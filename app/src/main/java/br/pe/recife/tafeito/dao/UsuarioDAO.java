@@ -80,6 +80,41 @@ public class UsuarioDAO implements IDAO<Usuario> {
     }
 
     @Override
+    public Usuario consultar(long id) {
+
+        Usuario res = null;
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+
+        String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_USUARIO;
+
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID + " = ?";
+        String args[] = new String[]{"" + id + ""};
+
+        Cursor cursor = db.rawQuery(sql, args);
+        if (cursor.moveToNext()) {
+
+            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID));
+            int habCol = cursor.getInt(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_HABILITADO));
+            String nomeCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_NOME));
+            String endCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ENDERECO));
+
+            Usuario usuario = new Usuario();
+            usuario.setId(idCol);
+            usuario.setHabilitado(Util.valorBooleano(habCol));
+            usuario.setNome(nomeCol);
+            usuario.setEndereco(endCol);
+
+            res = usuario;
+        }
+
+        cursor.close();
+
+        return res;
+
+    }
+
+    @Override
     public int excluir(Usuario usuario) {
 
         SQLiteDatabase db = bd.getWritableDatabase();

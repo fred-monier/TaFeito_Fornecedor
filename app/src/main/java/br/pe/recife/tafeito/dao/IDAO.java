@@ -6,6 +6,7 @@ public interface IDAO<T> {
 
     void salvar(T entidade);
     int excluir(T entidade);
+    T consultar(long id);
     List<T> listar();
 
 }
