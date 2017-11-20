@@ -17,12 +17,11 @@ public class ClienteDAO implements IDAO<Cliente> {
     private SQLHelperTaFeito bd;
 
     public static ClienteDAO getInstancia(Context context) {
-        ClienteDAO res;
+
         if (instancia == null) {
-            res = new ClienteDAO(context);
-        } else {
-            res = instancia;
+            instancia = new ClienteDAO(context);
         }
+
         return instancia;
     }
 

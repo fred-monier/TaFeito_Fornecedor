@@ -18,12 +18,11 @@ public class UsuarioDAO implements IDAO<Usuario> {
     private SQLHelperTaFeito bd;
 
     public static UsuarioDAO getInstancia(Context context) {
-        UsuarioDAO res;
+
         if (instancia == null) {
-            res = new UsuarioDAO(context);
-        } else {
-            res = instancia;
+            instancia = new UsuarioDAO(context);
         }
+
         return instancia;
     }
 

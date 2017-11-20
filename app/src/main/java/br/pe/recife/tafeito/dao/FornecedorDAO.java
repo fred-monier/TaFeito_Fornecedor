@@ -17,12 +17,11 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
     private SQLHelperTaFeito bd;
 
     public static FornecedorDAO getInstancia(Context context) {
-        FornecedorDAO res;
+
         if (instancia == null) {
-            res = new FornecedorDAO(context);
-        } else {
-            res = instancia;
+            instancia = new FornecedorDAO(context);
         }
+
         return instancia;
     }
 
