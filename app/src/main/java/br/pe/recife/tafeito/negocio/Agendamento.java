@@ -8,7 +8,7 @@ public class Agendamento {
     private Oferta oferta;
     private Cliente cliente;
     private Date dataHoraRealizado;
-    private Date getDataHoraCancelado;
+    private Date dataHoraCancelado;
 
     public long getId() {
         return id;
@@ -42,11 +42,11 @@ public class Agendamento {
         this.dataHoraRealizado = dataHoraRealizado;
     }
 
-    public Date getGetDataHoraCancelado() {
-        return getDataHoraCancelado;
+    public Date getDataHoraCancelado() {
+        return dataHoraCancelado;
     }
 
-    public void setGetDataHoraCancelado(Date getDataHoraCancelado) {
-        this.getDataHoraCancelado = getDataHoraCancelado;
+    public void setDataHoraCancelado(Date dataHoraCancelado) {
+        this.dataHoraCancelado = dataHoraCancelado;
     }
 }
