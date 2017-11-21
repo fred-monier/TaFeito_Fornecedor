@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TaFeito_Fornecedor</string>
+    <string name="excecao_objeto_nulo">Objeto nulo recebido</string>
+    <string name="excecao_objeto_nao_encontrado">Objeto nao encontrado</string>
+    <string name="excecao_objeto_nao_excluido">Objeto nao excluido</string>
+</resources>

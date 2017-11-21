@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">TaFeito_Fornecedor</string>
+    <string name="app_name">ItsDone_Supplier</string>
+    <string name="excecao_objeto_nulo">Null object received</string>
+    <string name="excecao_objeto_nao_encontrado">Object not found</string>
+    <string name="excecao_objeto_nao_excluido">Object not excluded</string>
 </resources>
