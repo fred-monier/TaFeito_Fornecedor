@@ -10,6 +10,7 @@ import br.pe.recife.tafeito.dao.ClienteDAO;
 import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
 import br.pe.recife.tafeito.negocio.Cliente;
+import br.pe.recife.tafeito.negocio.Usuario;
 
 
 /**
@@ -19,8 +20,11 @@ import br.pe.recife.tafeito.negocio.Cliente;
 public class ClienteService {
 
     private static ClienteService instancia;
+
     private ClienteDAO clienteDao;
-    //private UsuarioService usuarioService;
+
+    private UsuarioService usuarioService;
+
     private Context contexto;
 
     public static ClienteService getInstancia(Context context) {
@@ -34,7 +38,7 @@ public class ClienteService {
 
     private ClienteService(Context context) {
         this.clienteDao = ClienteDAO.getInstancia(context);
-        //this.usuarioService = UsuarioService.getInstancia(context);
+        this.usuarioService = UsuarioService.getInstancia(context);
     }
 
     public void salvar(Cliente cliente) throws InfraException, NegocioException {
@@ -44,6 +48,8 @@ public class ClienteService {
         }
 
         try {
+
+            usuarioService.salvar(cliente.gerarUsuario());
             clienteDao.salvar(cliente);
 
         } catch (Exception e) {
@@ -79,10 +85,16 @@ public class ClienteService {
         try {
 
             res = clienteDao.excluir(cliente);
-
             if (res <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
+
+            res = usuarioService.excluir(cliente.gerarUsuario());
+            if (res <= 0) {
+                throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
+            }
+
+
         } catch (NegocioException e) {
             throw  e;
         } catch (Exception e) {

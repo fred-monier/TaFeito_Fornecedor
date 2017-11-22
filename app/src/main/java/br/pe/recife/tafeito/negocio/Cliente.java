@@ -11,4 +11,15 @@ public class Cliente extends Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public Usuario gerarUsuario() {
+        Usuario usuario = new Usuario();
+
+        usuario.setId(this.getId());
+        usuario.setHabilitado(this.isHabilitado());
+        usuario.setNome(this.getNome());
+        usuario.setEndereco(this.getEndereco());
+
+        return usuario;
+    }
 }
