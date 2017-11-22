@@ -19,7 +19,11 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 public class FornecedorService {
 
     private static FornecedorService instancia;
+
     private FornecedorDAO fornecedorDao;
+
+    private UsuarioService usuarioService;
+
     private Context contexto;
 
     public static FornecedorService getInstancia(Context context) {
@@ -33,6 +37,7 @@ public class FornecedorService {
 
     private FornecedorService(Context context) {
         this.fornecedorDao = FornecedorDAO.getInstancia(context);
+        this.usuarioService = UsuarioService.getInstancia(context);
     }
 
     public void salvar(Fornecedor fornecedor) throws InfraException, NegocioException {
@@ -42,7 +47,10 @@ public class FornecedorService {
         }
 
         try {
+
+            usuarioService.salvar(fornecedor.gerarUsuario());
             fornecedorDao.salvar(fornecedor);
+
         } catch (Exception e) {
             throw new InfraException(e.getMessage(), e);
         }
@@ -76,10 +84,15 @@ public class FornecedorService {
         try {
 
             res = fornecedorDao.excluir(fornecedor);
-
             if (res <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
+
+            res = usuarioService.excluir(fornecedor.gerarUsuario());
+            if (res <= 0) {
+                throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
+            }
+
         } catch (NegocioException e) {
             throw  e;
         } catch (Exception e) {
