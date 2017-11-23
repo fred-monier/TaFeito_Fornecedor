@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
+import br.pe.recife.tafeito.util.Util;
 
 public class FornecedorDAO implements IDAO<Fornecedor> {
 
@@ -126,19 +127,33 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
 
         String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_FORNECEDOR;
 
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_USUARIO;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
+
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_CNPJ;
+        sql = sql + " ORDER BY " + "5";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
 
-            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID));
-            String cnpjCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_CNPJ));
+            //
+            long idCol = cursor.getLong(0);
+            String cnpjCol = cursor.getString(1);
 
+            //From USUARIO
+            int habUsu = cursor.getInt(3);
+            String nomeUsu = cursor.getString(4);
+            String endUsu = cursor.getString(5);
+
+            //From FORNECEDOR
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idCol);
+            fornecedor.setHabilitado(Util.valorBooleano(habUsu));
+            fornecedor.setNome(nomeUsu);
+            fornecedor.setEndereco(endUsu);
             fornecedor.setCnpj(cnpjCol);
 
             res.add(fornecedor);

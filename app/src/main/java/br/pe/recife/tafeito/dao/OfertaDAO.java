@@ -244,12 +244,7 @@ public class OfertaDAO implements IDAO<Oferta> {
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_ID_SERVICO;
-        sql = sql + ", " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_ANO_INICIO;
-        sql = sql + ", " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_MES_INICIO;
-        sql = sql + ", " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_DIA_INICIO;
-        sql = sql + ", " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_HORA_INICIO;
-        sql = sql + ", " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_MINUTO_INICIO;
+        sql = sql + " ORDER BY " + "3, 4, 5, 6, 7";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {

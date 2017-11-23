@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.pe.recife.tafeito.negocio.Cliente;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
+import br.pe.recife.tafeito.util.Util;
 
 public class ClienteDAO implements IDAO<Cliente> {
 
@@ -126,19 +127,32 @@ public class ClienteDAO implements IDAO<Cliente> {
 
         String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_CLIENTE;
 
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_USUARIO;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_CLIENTE + "." + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
+
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_CPF;
+        sql = sql + " ORDER BY " + "5";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
 
-            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID));
-            String cpfCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_CPF));
+            //From CLIENTE
+            long idCol = cursor.getLong(0);
+            String cpfCol = cursor.getString(1);
+
+            //From USUARIO
+            int habUsuCliente = cursor.getInt(3);
+            String nomeUsuCliente = cursor.getString(4);
+            String endUsuCliente = cursor.getString(5);
 
             Cliente cliente = new Cliente();
             cliente.setId(idCol);
+            cliente.setHabilitado(Util.valorBooleano(habUsuCliente));
+            cliente.setNome(nomeUsuCliente);
+            cliente.setEndereco(endUsuCliente);
             cliente.setCpf(cpfCol);
 
             res.add(cliente);

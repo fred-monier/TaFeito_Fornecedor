@@ -174,14 +174,14 @@ public class ServicoCategoriaDAO implements IDAO<ServicoCategoria> {
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_FORNECEDOR + " = ?";
         String args[] = new String[]{"" + forn.getId() + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_NOME;
+        sql = sql + " ORDER BY " + "2";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
 
-            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_ID));
-            String nomeCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_NOME));
-            String descCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_DESCRICAO));
+            long idCol = cursor.getLong(0);
+            String nomeCol = cursor.getString(1);
+            String descCol = cursor.getString(2);
 
             ServicoCategoria servicoCategoria = new ServicoCategoria();
             servicoCategoria.setId(idCol);

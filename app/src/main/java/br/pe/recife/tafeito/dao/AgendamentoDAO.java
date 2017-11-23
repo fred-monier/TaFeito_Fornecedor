@@ -313,7 +313,7 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_AGENDAMENTO_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
 
-        sql = sql + " ORDER BY " + " 6, 7, 8, 9, 10, 11";
+        sql = sql + " ORDER BY " + "16, 17, 18, 19, 20";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {

@@ -187,7 +187,7 @@ public class ServicoDAO implements IDAO<Servico> {
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_NOME;
+        sql = sql + " ORDER BY " + "4";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
@@ -261,7 +261,7 @@ public class ServicoDAO implements IDAO<Servico> {
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_SERVICO_CATEGORIA + " = ?";
         String args[] = new String[]{"" + servicoCat.getId() + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_NOME;
+        sql = sql + " ORDER BY " + "4";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
@@ -335,7 +335,7 @@ public class ServicoDAO implements IDAO<Servico> {
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_FORNECEDOR + " = ?";
         String args[] = new String[]{"" + forn.getId() + ""};
 
-        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_NOME;
+        sql = sql + " ORDER BY " + "7, 4";
 
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
