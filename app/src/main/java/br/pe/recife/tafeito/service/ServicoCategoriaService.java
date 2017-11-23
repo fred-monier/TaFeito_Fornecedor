@@ -7,6 +7,7 @@ import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.dao.ServicoCategoriaDAO;
 import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
+import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
 
@@ -88,7 +89,7 @@ public class ServicoCategoriaService {
 
     }
 
-    public List<ServicoCategoria> listar() throws InfraException{
+    public List<ServicoCategoria> listar() throws InfraException {
 
         try {
             return servicoCategoriaDao.listar();
@@ -96,4 +97,14 @@ public class ServicoCategoriaService {
             throw new InfraException(e.getMessage(),e);
         }
     }
+
+    public List<ServicoCategoria> listarPorFornecedor(Fornecedor forn)  throws InfraException {
+
+        try {
+            return servicoCategoriaDao.listarPorFornecedor(forn);
+        } catch (Exception e) {
+            throw new InfraException(e.getMessage(), e);
+        }
+    }
+
 }

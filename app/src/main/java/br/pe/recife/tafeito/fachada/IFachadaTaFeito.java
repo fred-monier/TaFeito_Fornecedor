@@ -16,46 +16,43 @@ import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
 public interface IFachadaTaFeito {
 
-    //AgendamentoService
-    void salvarAgendamento(Agendamento agendamento) throws InfraException,NegocioException;
-    Agendamento consultarAgendamento (long id) throws InfraException,NegocioException;
-    int excluirAgendamento(Agendamento agendamento) throws InfraException,NegocioException;
-    List<Agendamento> listarAgendamento() throws InfraException,NegocioException;
-
+    //FornecedorService
+    void salvarFornecedor(Fornecedor fornecedor) throws InfraException, NegocioException;
+    Fornecedor consultarFornecedor  (long id) throws InfraException, NegocioException;
+    int excluirFornecedor(Fornecedor fornecedor) throws InfraException, NegocioException;
+    List<Fornecedor> listarFornecedor() throws InfraException;
 
     //ClienteService
-    void salvarCliente(Cliente cliente) throws InfraException,NegocioException;
-    Cliente consultarCliente  (long id) throws InfraException,NegocioException;
-    int excluirCliente(Cliente cliente) throws InfraException,NegocioException;
-    List<Cliente> listarCliente() throws InfraException,NegocioException;
-
-    //FornecedorService
-    void salvarFornecedor(Fornecedor fornecedor) throws InfraException,NegocioException;
-    Fornecedor consultarFornecedor  (long id) throws InfraException,NegocioException;
-    int excluirFornecedor(Fornecedor fornecedor) throws InfraException,NegocioException;
-    List<Fornecedor> listarFornecedor() throws InfraException,NegocioException;
-
-
-    //OfertaService
-    void salvarOferta(Oferta oferta ) throws InfraException,NegocioException;
-    Oferta consultarOferta  (long id) throws InfraException,NegocioException;
-    int excluirOferta(Oferta oferta) throws InfraException,NegocioException;
-    List<Oferta> listarOferta() throws InfraException,NegocioException;
-
+    void salvarCliente(Cliente cliente) throws InfraException, NegocioException;
+    Cliente consultarCliente  (long id) throws InfraException, NegocioException;
+    int excluirCliente(Cliente cliente) throws InfraException, NegocioException;
+    List<Cliente> listarCliente() throws InfraException;
 
     //ServicoCategoriaService
     void salvarServicoCategoria(ServicoCategoria servicoCategoria)throws InfraException, NegocioException;
-    ServicoCategoria consultarServicoCategoria  (long id) throws InfraException,NegocioException;
-    int excluirServicoCategoria(ServicoCategoria servicoCategoria) throws InfraException,NegocioException;
-    List<ServicoCategoria> listarServicoCategoria() throws InfraException,NegocioException;
-
+    ServicoCategoria consultarServicoCategoria  (long id) throws InfraException, NegocioException;
+    int excluirServicoCategoria(ServicoCategoria servicoCategoria) throws InfraException, NegocioException;
+    List<ServicoCategoria> listarServicoCategoria() throws InfraException;
+    List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn)  throws InfraException;
 
     //ServicoService
     void salvarServico(Servico servico)throws InfraException, NegocioException;
     Servico consultarServico  (long id) throws InfraException,NegocioException;
     int excluirServico(Servico servico) throws InfraException,NegocioException;
-    List<Servico> listarServico() throws InfraException,NegocioException;
+    List<Servico> listarServico() throws InfraException;
+    List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat) throws InfraException;
+    List<Servico> listarPorFornecedorServico(Fornecedor forn) throws InfraException;
 
+    //OfertaService
+    void salvarOferta(Oferta oferta ) throws InfraException,NegocioException;
+    Oferta consultarOferta  (long id) throws InfraException,NegocioException;
+    int excluirOferta(Oferta oferta) throws InfraException,NegocioException;
+    List<Oferta> listarOferta() throws InfraException;
 
+    //AgendamentoService
+    void salvarAgendamento(Agendamento agendamento) throws InfraException,NegocioException;
+    Agendamento consultarAgendamento (long id) throws InfraException,NegocioException;
+    int excluirAgendamento(Agendamento agendamento) throws InfraException,NegocioException;
+    List<Agendamento> listarAgendamento() throws InfraException;
 
 }

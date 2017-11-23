@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
 
@@ -132,6 +133,46 @@ public class ServicoCategoriaDAO implements IDAO<ServicoCategoria> {
 
         //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_XXX + " = ?";
         //String args[] = new String[]{"" + "XXX" + ""};
+
+        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_NOME;
+
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+
+            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_ID));
+            String nomeCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_NOME));
+            String descCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_DESCRICAO));
+
+            ServicoCategoria servicoCategoria = new ServicoCategoria();
+            servicoCategoria.setId(idCol);
+            servicoCategoria.setNome(nomeCol);
+            servicoCategoria.setDescricao(descCol);
+
+            res.add(servicoCategoria);
+        }
+
+        cursor.close();
+
+        return res;
+    }
+
+    public List<ServicoCategoria> listarPorFornecedor(Fornecedor forn) {
+
+        List<ServicoCategoria> res = new ArrayList<ServicoCategoria>();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+
+        String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA;
+
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_SERVICO;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_SERVICO + "." + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_SERVICO_CATEGORIA;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA + "." + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_ID;
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_FORNECEDOR;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_SERVICO + "." + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_FORNECEDOR;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
+
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_SERVICO_COLUNA_ID_FORNECEDOR + " = ?";
+        String args[] = new String[]{"" + forn.getId() + ""};
 
         sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_SERVICO_CATEGORIA_COLUNA_NOME;
 

@@ -26,30 +26,31 @@ import br.pe.recife.tafeito.service.ServicoService;
 public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
 
     private static FachadaTaFeitoSQLite instancia;
-    private AgendamentoService agendamentoService;
-    private ClienteService clienteService;
+
     private FornecedorService fornecedorService;
-    private OfertaService ofertaService;
+    private ClienteService clienteService;
     private ServicoCategoriaService servicoCategoriaService;
     private ServicoService servicoService;
+    private OfertaService ofertaService;
+    private AgendamentoService agendamentoService;
 
     public static FachadaTaFeitoSQLite getInstancia(Context context){
 
-        if(instancia != null) {
+        if(instancia == null) {
             instancia = new FachadaTaFeitoSQLite(context);
         }
 
         return instancia;
     }
 
-    private FachadaTaFeitoSQLite(Context context){
+    private FachadaTaFeitoSQLite(Context context) {
 
-        this.agendamentoService = AgendamentoService.getInstancia(context);
-        this.clienteService = ClienteService.getInstancia(context);
         this.fornecedorService = FornecedorService.getInstancia(context);
-        this.ofertaService = OfertaService.getInstancia(context);
+        this.clienteService = ClienteService.getInstancia(context);
         this.servicoCategoriaService = ServicoCategoriaService.getInstancia(context);
         this.servicoService = ServicoService.getInstancia(context);
+        this.ofertaService = OfertaService.getInstancia(context);
+        this.agendamentoService = AgendamentoService.getInstancia(context);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<Agendamento> listarAgendamento() throws InfraException, NegocioException {
+    public List<Agendamento> listarAgendamento() throws InfraException {
 
         return this.agendamentoService.listar();
     }
@@ -96,7 +97,7 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<Cliente> listarCliente() throws InfraException, NegocioException {
+    public List<Cliente> listarCliente() throws InfraException {
 
         return this.clienteService.listar();
     }
@@ -120,7 +121,7 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<Fornecedor> listarFornecedor() throws InfraException, NegocioException {
+    public List<Fornecedor> listarFornecedor() throws InfraException {
 
         return this.fornecedorService.listar();
     }
@@ -144,7 +145,7 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<Oferta> listarOferta() throws InfraException, NegocioException {
+    public List<Oferta> listarOferta() throws InfraException {
 
         return this.ofertaService.listar();
     }
@@ -168,9 +169,15 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<ServicoCategoria> listarServicoCategoria() throws InfraException, NegocioException {
+    public List<ServicoCategoria> listarServicoCategoria() throws InfraException {
 
         return this.servicoCategoriaService.listar();
+    }
+
+    @Override
+    public List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn)  throws InfraException {
+
+        return this.servicoCategoriaService.listarPorFornecedor(forn);
     }
 
     @Override
@@ -192,8 +199,20 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public List<Servico> listarServico() throws InfraException, NegocioException {
+    public List<Servico> listarServico() throws InfraException {
 
         return this.servicoService.listar();
+    }
+
+    @Override
+    public List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat) throws InfraException {
+
+        return this.servicoService.listarPorServicoCategoria(servCat);
+    }
+
+    @Override
+    public List<Servico> listarPorFornecedorServico(Fornecedor forn) throws InfraException {
+
+        return this.servicoService.listarPorFornecedor(forn);
     }
 }
