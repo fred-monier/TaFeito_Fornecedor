@@ -7,6 +7,7 @@ import java.util.List;
 import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
 import br.pe.recife.tafeito.negocio.Agendamento;
+import br.pe.recife.tafeito.negocio.Autenticacao;
 import br.pe.recife.tafeito.negocio.Cliente;
 import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Oferta;
@@ -50,170 +51,170 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarAgendamento(Agendamento agendamento, Context contexto) throws InfraException, NegocioException {
+    public void salvarAgendamento(Agendamento agendamento, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.agendamentoService.salvar(agendamento, contexto);
     }
 
     @Override
-    public Agendamento consultarAgendamento(long id, Context contexto) throws InfraException, NegocioException {
+    public Agendamento consultarAgendamento(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.agendamentoService.consultar(id, contexto);
 
     }
 
     @Override
-    public int excluirAgendamento(Agendamento agendamento, Context contexto) throws InfraException, NegocioException {
+    public int excluirAgendamento(Agendamento agendamento, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.agendamentoService.excluir(agendamento, contexto);
     }
 
     @Override
-    public List<Agendamento> listarAgendamento() throws InfraException {
+    public List<Agendamento> listarAgendamento(Autenticacao autenticacao) throws InfraException {
 
         return this.agendamentoService.listar();
     }
 
     @Override
-    public void salvarCliente(Cliente cliente, Context contexto) throws InfraException, NegocioException {
+    public void salvarCliente(Cliente cliente, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.clienteService.salvar(cliente, contexto);
     }
 
     @Override
-    public Cliente consultarCliente(long id, Context contexto) throws InfraException, NegocioException {
+    public Cliente consultarCliente(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.clienteService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirCliente(Cliente cliente, Context contexto) throws InfraException, NegocioException {
+    public int excluirCliente(Cliente cliente, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.clienteService.excluir(cliente, contexto);
     }
 
     @Override
-    public List<Cliente> listarCliente() throws InfraException {
+    public List<Cliente> listarCliente(Autenticacao autenticacao) throws InfraException {
 
         return this.clienteService.listar();
     }
 
     @Override
-    public void salvarFornecedor(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException {
+    public void salvarFornecedor(Fornecedor fornecedor, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.fornecedorService.salvar(fornecedor, contexto);
     }
 
     @Override
-    public Fornecedor consultarFornecedor(long id, Context contexto) throws InfraException, NegocioException {
+    public Fornecedor consultarFornecedor(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.fornecedorService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirFornecedor(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException {
+    public int excluirFornecedor(Fornecedor fornecedor, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.fornecedorService.excluir(fornecedor, contexto);
     }
 
     @Override
-    public List<Fornecedor> listarFornecedor() throws InfraException {
+    public List<Fornecedor> listarFornecedor(Autenticacao autenticacao) throws InfraException {
 
         return this.fornecedorService.listar();
     }
 
     @Override
-    public void salvarOferta(Oferta oferta, Context contexto) throws InfraException, NegocioException {
+    public void salvarOferta(Oferta oferta, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.ofertaService.salvar(oferta, contexto);
     }
 
     @Override
-    public Oferta consultarOferta(long id, Context contexto) throws InfraException, NegocioException {
+    public Oferta consultarOferta(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.ofertaService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirOferta(Oferta oferta, Context contexto) throws InfraException, NegocioException {
+    public int excluirOferta(Oferta oferta, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.ofertaService.excluir(oferta, contexto);
     }
 
     @Override
-    public List<Oferta> listarOferta() throws InfraException {
+    public List<Oferta> listarOferta(Autenticacao autenticacao) throws InfraException {
 
         return this.ofertaService.listar();
     }
 
     @Override
-    public void salvarServicoCategoria(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException {
+    public void salvarServicoCategoria(ServicoCategoria servicoCategoria, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.servicoCategoriaService.salvar(servicoCategoria, contexto);
     }
 
     @Override
-    public ServicoCategoria consultarServicoCategoria(long id, Context contexto) throws InfraException, NegocioException {
+    public ServicoCategoria consultarServicoCategoria(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.servicoCategoriaService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirServicoCategoria(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException {
+    public int excluirServicoCategoria(ServicoCategoria servicoCategoria, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.servicoCategoriaService.excluir(servicoCategoria, contexto);
     }
 
     @Override
-    public List<ServicoCategoria> listarServicoCategoria() throws InfraException {
+    public List<ServicoCategoria> listarServicoCategoria(Autenticacao autenticacao) throws InfraException {
 
         return this.servicoCategoriaService.listar();
     }
 
     @Override
-    public List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn)  throws InfraException {
+    public List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn, Autenticacao autenticacao)  throws InfraException {
 
         return this.servicoCategoriaService.listarPorFornecedor(forn);
     }
 
     @Override
-    public void salvarServico(Servico servico, Context contexto) throws InfraException, NegocioException {
+    public void salvarServico(Servico servico, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         this.servicoService.salvar(servico, contexto);
     }
 
     @Override
-    public Servico consultarServico(long id, Context contexto) throws InfraException, NegocioException {
+    public Servico consultarServico(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.servicoService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirServico(Servico servico, Context contexto) throws InfraException, NegocioException {
+    public int excluirServico(Servico servico, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException {
 
         return this.servicoService.excluir(servico, contexto);
     }
 
     @Override
-    public List<Servico> listarServico() throws InfraException {
+    public List<Servico> listarServico(Autenticacao autenticacao) throws InfraException {
 
         return this.servicoService.listar();
     }
 
     @Override
-    public List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat) throws InfraException {
+    public List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat, Autenticacao autenticacao) throws InfraException {
 
         return this.servicoService.listarPorServicoCategoria(servCat);
     }
 
     @Override
-    public List<Servico> listarPorFornecedorServico(Fornecedor forn) throws InfraException {
+    public List<Servico> listarPorFornecedorServico(Fornecedor forn, Autenticacao autenticacao) throws InfraException {
 
         return this.servicoService.listarPorFornecedor(forn);
     }
 
     @Override
-    public List<Servico> listarPorServicoCategoriaPorFornecedorServico(ServicoCategoria servicoCat, Fornecedor forn)
+    public List<Servico> listarPorServicoCategoriaPorFornecedorServico(ServicoCategoria servicoCat, Fornecedor forn, Autenticacao autenticacao)
             throws InfraException {
         return this.servicoService.listarPorServicoCategoriaPorFornecedor(servicoCat, forn);
     }
