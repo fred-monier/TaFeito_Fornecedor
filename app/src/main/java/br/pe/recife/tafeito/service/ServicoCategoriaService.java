@@ -10,16 +10,10 @@ import br.pe.recife.tafeito.excecao.NegocioException;
 import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
-
-/**
- * Created by HP on 22/11/2017.
- */
-
 public class ServicoCategoriaService {
 
     private static ServicoCategoriaService instancia;
     private ServicoCategoriaDAO servicoCategoriaDao;
-    private Context contexto;
 
     public static ServicoCategoriaService getInstancia(Context context) {
 
@@ -34,7 +28,7 @@ public class ServicoCategoriaService {
         this.servicoCategoriaDao = ServicoCategoriaDAO.getInstancia(context);
     }
 
-    public void salvar(ServicoCategoria servicoCategoria) throws InfraException, NegocioException {
+    public void salvar(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException {
 
         if(servicoCategoria == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -47,7 +41,7 @@ public class ServicoCategoriaService {
         }
     }
 
-    public ServicoCategoria consultar(long id) throws InfraException, NegocioException {
+    public ServicoCategoria consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         ServicoCategoria res = null;
 
@@ -68,7 +62,7 @@ public class ServicoCategoriaService {
 
     }
 
-    public int excluir(ServicoCategoria servicoCategoria) throws InfraException, NegocioException{
+    public int excluir(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 

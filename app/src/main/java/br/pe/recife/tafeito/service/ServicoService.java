@@ -11,16 +11,10 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
-
-/**
- * Created by HP on 22/11/2017.
- */
-
 public class ServicoService {
 
     private static ServicoService instancia;
     private ServicoDAO servicoDao;
-    private Context contexto;
 
     public static ServicoService getInstancia(Context context) {
 
@@ -35,7 +29,7 @@ public class ServicoService {
         this.servicoDao = ServicoDAO.getInstancia(context);
     }
 
-    public void salvar(Servico servico) throws InfraException, NegocioException {
+    public void salvar(Servico servico, Context contexto) throws InfraException, NegocioException {
 
         if(servico == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -48,7 +42,7 @@ public class ServicoService {
         }
     }
 
-    public Servico consultar(long id) throws InfraException, NegocioException {
+    public Servico consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         Servico res = null;
 
@@ -69,7 +63,7 @@ public class ServicoService {
 
     }
 
-    public int excluir(Servico servico) throws InfraException, NegocioException{
+    public int excluir(Servico servico, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 
@@ -112,6 +106,15 @@ public class ServicoService {
 
         try {
             return servicoDao.listarPorFornecedor(forn);
+        }catch (Exception e){
+            throw new InfraException(e.getMessage(),e);
+        }
+    }
+
+    public List<Servico> listarPorServicoCategoriaPorFornecedor(ServicoCategoria servCat, Fornecedor forn) throws InfraException{
+
+        try {
+            return servicoDao.listarPorServicoCategoriaPorFornecedor(servCat, forn);
         }catch (Exception e){
             throw new InfraException(e.getMessage(),e);
         }

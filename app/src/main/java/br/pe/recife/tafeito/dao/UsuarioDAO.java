@@ -39,6 +39,8 @@ public class UsuarioDAO implements IDAO<Usuario> {
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_HABILITADO, Util.valorInteiro(usuario.isHabilitado()));
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_NOME, usuario.getNome());
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ENDERECO, usuario.getEndereco());
+        cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_EMAIL, usuario.getEmail());
+        cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_TELEFONE, usuario.getTelefone());
 
         long id = db.insert(SQLHelperTaFeito.TABELA_USUARIO, null, cv);
 
@@ -60,6 +62,8 @@ public class UsuarioDAO implements IDAO<Usuario> {
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_HABILITADO, Util.valorInteiro(usuario.isHabilitado()));
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_NOME, usuario.getNome());
         cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ENDERECO, usuario.getEndereco());
+        cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_EMAIL, usuario.getEmail());
+        cv.put(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_TELEFONE, usuario.getTelefone());
 
         int linhasAlteradas = db.update(SQLHelperTaFeito.TABELA_USUARIO, cv,
                 SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID + " = ?",
@@ -97,12 +101,16 @@ public class UsuarioDAO implements IDAO<Usuario> {
             int habCol = cursor.getInt(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_HABILITADO));
             String nomeCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_NOME));
             String endCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ENDERECO));
+            String emailCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_EMAIL));
+            int telCol = cursor.getInt(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_TELEFONE));
 
             Usuario usuario = new Usuario();
             usuario.setId(idCol);
             usuario.setHabilitado(Util.valorBooleano(habCol));
             usuario.setNome(nomeCol);
             usuario.setEndereco(endCol);
+            usuario.setEmail(emailCol);
+            usuario.setTelefone(telCol);
 
             res = usuario;
         }
@@ -147,12 +155,16 @@ public class UsuarioDAO implements IDAO<Usuario> {
             int habCol = cursor.getInt(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_HABILITADO));
             String nomeCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_NOME));
             String endCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ENDERECO));
+            String emailCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_EMAIL));
+            int telCol = cursor.getInt(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_USUARIO_COLUNA_TELEFONE));
 
             Usuario usuario = new Usuario();
             usuario.setId(idCol);
             usuario.setHabilitado(Util.valorBooleano(habCol));
             usuario.setNome(nomeCol);
             usuario.setEndereco(endCol);
+            usuario.setEmail(emailCol);
+            usuario.setTelefone(telCol);
 
             res.add(usuario);
         }

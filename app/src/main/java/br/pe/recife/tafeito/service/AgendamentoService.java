@@ -10,16 +10,10 @@ import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
 import br.pe.recife.tafeito.negocio.Agendamento;
 
-
-/**
- * Created by HP on 22/11/2017.
- */
-
 public class AgendamentoService {
 
     private static AgendamentoService instancia;
     private AgendamentoDAO agendamentoDao;
-    private Context contexto;
 
     public static AgendamentoService getInstancia(Context context) {
 
@@ -34,7 +28,7 @@ public class AgendamentoService {
         this.agendamentoDao = AgendamentoDAO.getInstancia(context);
     }
 
-    public void salvar(Agendamento agendamento) throws InfraException, NegocioException {
+    public void salvar(Agendamento agendamento, Context contexto) throws InfraException, NegocioException {
 
         if(agendamento == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -47,7 +41,7 @@ public class AgendamentoService {
         }
     }
 
-    public Agendamento consultar(long id) throws InfraException, NegocioException {
+    public Agendamento consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         Agendamento res = null;
 
@@ -68,7 +62,7 @@ public class AgendamentoService {
 
     }
 
-    public int excluir(Agendamento agendamento) throws InfraException, NegocioException{
+    public int excluir(Agendamento agendamento, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 

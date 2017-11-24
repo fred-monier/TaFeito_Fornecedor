@@ -168,12 +168,16 @@ public class OfertaDAO implements IDAO<Oferta> {
             int habUsu = cursor.getInt(23);
             String nomeUsu = cursor.getString(24);
             String endUsu = cursor.getString(25);
+            String emailCol = cursor.getString(26);
+            int telCol = cursor.getInt(27);
 
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idForn);
             fornecedor.setHabilitado(Util.valorBooleano(habUsu));
             fornecedor.setNome(nomeUsu);
             fornecedor.setEndereco(endUsu);
+            fornecedor.setEmail(emailCol);
+            fornecedor.setTelefone(telCol);
             fornecedor.setCnpj(cnpjForn);
 
             ServicoCategoria servicoCategoria = new ServicoCategoria();
@@ -280,12 +284,16 @@ public class OfertaDAO implements IDAO<Oferta> {
             int habUsu = cursor.getInt(23);
             String nomeUsu = cursor.getString(24);
             String endUsu = cursor.getString(25);
+            String emailCol = cursor.getString(26);
+            int telCol = cursor.getInt(27);
 
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idForn);
             fornecedor.setHabilitado(Util.valorBooleano(habUsu));
             fornecedor.setNome(nomeUsu);
             fornecedor.setEndereco(endUsu);
+            fornecedor.setEmail(emailCol);
+            fornecedor.setTelefone(telCol);
             fornecedor.setCnpj(cnpjForn);
 
             ServicoCategoria servicoCategoria = new ServicoCategoria();

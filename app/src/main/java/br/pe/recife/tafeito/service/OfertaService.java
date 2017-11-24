@@ -12,15 +12,10 @@ import br.pe.recife.tafeito.excecao.NegocioException;
 
 import br.pe.recife.tafeito.negocio.Oferta;
 
-/**
- * Created by HP on 21/11/2017.
- */
-
 public class OfertaService {
 
     private static OfertaService instancia;
     private OfertaDAO ofertaDao;
-    private Context contexto;
 
     public static OfertaService getInstancia(Context context) {
 
@@ -35,7 +30,7 @@ public class OfertaService {
         this.ofertaDao = OfertaDAO.getInstancia(context);
     }
 
-    public void salvar(Oferta oferta) throws InfraException, NegocioException {
+    public void salvar(Oferta oferta, Context contexto) throws InfraException, NegocioException {
 
         if(oferta == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -48,7 +43,7 @@ public class OfertaService {
         }
     }
 
-    public Oferta consultar(long id) throws InfraException, NegocioException {
+    public Oferta consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         Oferta res = null;
 
@@ -69,7 +64,7 @@ public class OfertaService {
 
     }
 
-    public int excluir(Oferta oferta) throws InfraException, NegocioException{
+    public int excluir(Oferta oferta, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 

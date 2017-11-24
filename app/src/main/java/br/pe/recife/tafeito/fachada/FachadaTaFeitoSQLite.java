@@ -19,10 +19,6 @@ import br.pe.recife.tafeito.service.OfertaService;
 import br.pe.recife.tafeito.service.ServicoCategoriaService;
 import br.pe.recife.tafeito.service.ServicoService;
 
-/**
- * Created by HP on 22/11/2017.
- */
-
 public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
 
     private static FachadaTaFeitoSQLite instancia;
@@ -54,22 +50,22 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarAgendamento(Agendamento agendamento) throws InfraException, NegocioException {
+    public void salvarAgendamento(Agendamento agendamento, Context contexto) throws InfraException, NegocioException {
 
-        this.agendamentoService.salvar(agendamento);
+        this.agendamentoService.salvar(agendamento, contexto);
     }
 
     @Override
-    public Agendamento consultarAgendamento(long id) throws InfraException, NegocioException {
+    public Agendamento consultarAgendamento(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.agendamentoService.consultar(id);
+        return this.agendamentoService.consultar(id, contexto);
 
     }
 
     @Override
-    public int excluirAgendamento(Agendamento agendamento) throws InfraException, NegocioException {
+    public int excluirAgendamento(Agendamento agendamento, Context contexto) throws InfraException, NegocioException {
 
-        return this.agendamentoService.excluir(agendamento);
+        return this.agendamentoService.excluir(agendamento, contexto);
     }
 
     @Override
@@ -79,21 +75,21 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarCliente(Cliente cliente) throws InfraException, NegocioException {
+    public void salvarCliente(Cliente cliente, Context contexto) throws InfraException, NegocioException {
 
-        this.clienteService.salvar(cliente);
+        this.clienteService.salvar(cliente, contexto);
     }
 
     @Override
-    public Cliente consultarCliente(long id) throws InfraException, NegocioException {
+    public Cliente consultarCliente(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.clienteService.consultar(id);
+        return this.clienteService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirCliente(Cliente cliente) throws InfraException, NegocioException {
+    public int excluirCliente(Cliente cliente, Context contexto) throws InfraException, NegocioException {
 
-        return this.clienteService.excluir(cliente);
+        return this.clienteService.excluir(cliente, contexto);
     }
 
     @Override
@@ -103,21 +99,21 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarFornecedor(Fornecedor fornecedor) throws InfraException, NegocioException {
+    public void salvarFornecedor(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException {
 
-        this.fornecedorService.salvar(fornecedor);
+        this.fornecedorService.salvar(fornecedor, contexto);
     }
 
     @Override
-    public Fornecedor consultarFornecedor(long id) throws InfraException, NegocioException {
+    public Fornecedor consultarFornecedor(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.fornecedorService.consultar(id);
+        return this.fornecedorService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirFornecedor(Fornecedor fornecedor) throws InfraException, NegocioException {
+    public int excluirFornecedor(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException {
 
-        return this.fornecedorService.excluir(fornecedor);
+        return this.fornecedorService.excluir(fornecedor, contexto);
     }
 
     @Override
@@ -127,21 +123,21 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarOferta(Oferta oferta) throws InfraException, NegocioException {
+    public void salvarOferta(Oferta oferta, Context contexto) throws InfraException, NegocioException {
 
-        this.ofertaService.salvar(oferta);
+        this.ofertaService.salvar(oferta, contexto);
     }
 
     @Override
-    public Oferta consultarOferta(long id) throws InfraException, NegocioException {
+    public Oferta consultarOferta(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.ofertaService.consultar(id);
+        return this.ofertaService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirOferta(Oferta oferta) throws InfraException, NegocioException {
+    public int excluirOferta(Oferta oferta, Context contexto) throws InfraException, NegocioException {
 
-        return this.ofertaService.excluir(oferta);
+        return this.ofertaService.excluir(oferta, contexto);
     }
 
     @Override
@@ -151,21 +147,21 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarServicoCategoria(ServicoCategoria servicoCategoria) throws InfraException, NegocioException {
+    public void salvarServicoCategoria(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException {
 
-        this.servicoCategoriaService.salvar(servicoCategoria);
+        this.servicoCategoriaService.salvar(servicoCategoria, contexto);
     }
 
     @Override
-    public ServicoCategoria consultarServicoCategoria(long id) throws InfraException, NegocioException {
+    public ServicoCategoria consultarServicoCategoria(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.servicoCategoriaService.consultar(id);
+        return this.servicoCategoriaService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirServicoCategoria(ServicoCategoria servicoCategoria) throws InfraException, NegocioException {
+    public int excluirServicoCategoria(ServicoCategoria servicoCategoria, Context contexto) throws InfraException, NegocioException {
 
-        return this.servicoCategoriaService.excluir(servicoCategoria);
+        return this.servicoCategoriaService.excluir(servicoCategoria, contexto);
     }
 
     @Override
@@ -181,21 +177,21 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarServico(Servico servico) throws InfraException, NegocioException {
+    public void salvarServico(Servico servico, Context contexto) throws InfraException, NegocioException {
 
-        this.servicoService.salvar(servico);
+        this.servicoService.salvar(servico, contexto);
     }
 
     @Override
-    public Servico consultarServico(long id) throws InfraException, NegocioException {
+    public Servico consultarServico(long id, Context contexto) throws InfraException, NegocioException {
 
-        return this.servicoService.consultar(id);
+        return this.servicoService.consultar(id, contexto);
     }
 
     @Override
-    public int excluirServico(Servico servico) throws InfraException, NegocioException {
+    public int excluirServico(Servico servico, Context contexto) throws InfraException, NegocioException {
 
-        return this.servicoService.excluir(servico);
+        return this.servicoService.excluir(servico, contexto);
     }
 
     @Override
@@ -214,5 +210,11 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     public List<Servico> listarPorFornecedorServico(Fornecedor forn) throws InfraException {
 
         return this.servicoService.listarPorFornecedor(forn);
+    }
+
+    @Override
+    public List<Servico> listarPorServicoCategoriaPorFornecedorServico(ServicoCategoria servicoCat, Fornecedor forn)
+            throws InfraException {
+        return this.servicoService.listarPorServicoCategoriaPorFornecedor(servicoCat, forn);
     }
 }

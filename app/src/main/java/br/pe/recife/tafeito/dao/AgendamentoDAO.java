@@ -194,30 +194,36 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             int habUsuCliente = cursor.getInt(28);
             String nomeUsuCliente = cursor.getString(29);
             String endUsuCliente = cursor.getString(30);
+            String emailColCliente = cursor.getString(31);
+            int telColCliente = cursor.getInt(32);
 
             //From SERVICO
-            long idServCat = cursor.getLong(32);
-            long idForn = cursor.getLong(33);
-            String nomeSer = cursor.getString(34);
-            String descSer= cursor.getString(35);
+            long idServCat = cursor.getLong(34);
+            long idForn = cursor.getLong(35);
+            String nomeSer = cursor.getString(36);
+            String descSer= cursor.getString(37);
 
             //From SERVICO_CATEGORIA
-            String nomeSerCat = cursor.getString(37);
-            String descSerCat = cursor.getString(38);
+            String nomeSerCat = cursor.getString(39);
+            String descSerCat = cursor.getString(40);
 
             //From FORNECEDOR
-            String cnpjForn = cursor.getString(40);
+            String cnpjForn = cursor.getString(42);
 
             //From USUARIO (Fornecedor)
-            int habUsuForn = cursor.getInt(42);
-            String nomeUsuForn = cursor.getString(43);
-            String endUsuForn = cursor.getString(44);
+            int habUsuForn = cursor.getInt(44);
+            String nomeUsuForn = cursor.getString(45);
+            String endUsuForn = cursor.getString(46);
+            String emailColForn = cursor.getString(47);
+            int telColForn = cursor.getInt(48);
 
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idForn);
             fornecedor.setHabilitado(Util.valorBooleano(habUsuForn));
             fornecedor.setNome(nomeUsuForn);
             fornecedor.setEndereco(endUsuForn);
+            fornecedor.setEmail(emailColForn);
+            fornecedor.setTelefone(telColForn);
             fornecedor.setCnpj(cnpjForn);
 
             ServicoCategoria servicoCategoria = new ServicoCategoria();
@@ -246,6 +252,8 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             cliente.setHabilitado(Util.valorBooleano(habUsuCliente));
             cliente.setNome(nomeUsuCliente);
             cliente.setEndereco(endUsuCliente);
+            cliente.setEmail(emailColCliente);
+            cliente.setTelefone(telColCliente);
             cliente.setCpf(cpfCliente);
 
             GregorianCalendar gcRealizado = new GregorianCalendar(anoRealizado, mesRealizado, diaRealizado, horaRealizado, minutoRealizado);
@@ -353,30 +361,36 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             int habUsuCliente = cursor.getInt(28);
             String nomeUsuCliente = cursor.getString(29);
             String endUsuCliente = cursor.getString(30);
+            String emailColCliente = cursor.getString(31);
+            int telColCliente = cursor.getInt(32);
 
             //From SERVICO
-            long idServCat = cursor.getLong(32);
-            long idForn = cursor.getLong(33);
-            String nomeSer = cursor.getString(34);
-            String descSer= cursor.getString(35);
+            long idServCat = cursor.getLong(34);
+            long idForn = cursor.getLong(35);
+            String nomeSer = cursor.getString(36);
+            String descSer= cursor.getString(37);
 
             //From SERVICO_CATEGORIA
-            String nomeSerCat = cursor.getString(37);
-            String descSerCat = cursor.getString(38);
+            String nomeSerCat = cursor.getString(39);
+            String descSerCat = cursor.getString(40);
 
             //From FORNECEDOR
-            String cnpjForn = cursor.getString(40);
+            String cnpjForn = cursor.getString(42);
 
             //From USUARIO (Fornecedor)
-            int habUsuForn = cursor.getInt(42);
-            String nomeUsuForn = cursor.getString(43);
-            String endUsuForn = cursor.getString(44);
+            int habUsuForn = cursor.getInt(44);
+            String nomeUsuForn = cursor.getString(45);
+            String endUsuForn = cursor.getString(46);
+            String emailColForn = cursor.getString(47);
+            int telColForn = cursor.getInt(48);
 
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idForn);
             fornecedor.setHabilitado(Util.valorBooleano(habUsuForn));
             fornecedor.setNome(nomeUsuForn);
             fornecedor.setEndereco(endUsuForn);
+            fornecedor.setTelefone(telColForn);
+            fornecedor.setCnpj(cnpjForn);
             fornecedor.setCnpj(cnpjForn);
 
             ServicoCategoria servicoCategoria = new ServicoCategoria();
@@ -405,6 +419,8 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             cliente.setHabilitado(Util.valorBooleano(habUsuCliente));
             cliente.setNome(nomeUsuCliente);
             cliente.setEndereco(endUsuCliente);
+            cliente.setEmail(emailColCliente);
+            cliente.setTelefone(telColCliente);
             cliente.setCpf(cpfCliente);
 
             GregorianCalendar gcRealizado = new GregorianCalendar(anoRealizado, mesRealizado, diaRealizado, horaRealizado, minutoRealizado);

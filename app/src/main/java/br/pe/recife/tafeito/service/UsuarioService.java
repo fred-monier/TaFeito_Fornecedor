@@ -16,7 +16,6 @@ public class UsuarioService {
 
     private static UsuarioService instancia;
     private UsuarioDAO usuarioDao;
-    private Context contexto;
 
     public static UsuarioService getInstancia(Context context) {
 
@@ -31,7 +30,7 @@ public class UsuarioService {
         this.usuarioDao = UsuarioDAO.getInstancia(context);
     }
 
-    public void salvar(Usuario usuario) throws InfraException, NegocioException {
+    public void salvar(Usuario usuario, Context contexto) throws InfraException, NegocioException {
 
         if(usuario == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -44,7 +43,7 @@ public class UsuarioService {
         }
     }
 
-    public Usuario consultar(long id) throws InfraException, NegocioException {
+    public Usuario consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         Usuario res = null;
 
@@ -65,7 +64,7 @@ public class UsuarioService {
 
     }
 
-    public int excluir(Usuario usuario) throws InfraException, NegocioException{
+    public int excluir(Usuario usuario, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 

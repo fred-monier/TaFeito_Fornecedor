@@ -83,17 +83,34 @@ public class ClienteDAO implements IDAO<Cliente> {
 
         String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_CLIENTE;
 
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_USUARIO;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_CLIENTE + "." + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
+
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID + " = ?";
         String args[] = new String[]{"" + id + ""};
 
         Cursor cursor = db.rawQuery(sql, args);
         if (cursor.moveToNext()) {
 
-            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID));
-            String cpfCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_CPF));
+            //From CLIENTE
+            long idCol = cursor.getLong(0);
+            String cpfCol = cursor.getString(1);
+
+            //From USUARIO
+            int habUsuCliente = cursor.getInt(3);
+            String nomeUsuCliente = cursor.getString(4);
+            String endUsuCliente = cursor.getString(5);
+            String emailCol = cursor.getString(6);
+            int telCol = cursor.getInt(7);
 
             Cliente cliente = new Cliente();
             cliente.setId(idCol);
+            cliente.setHabilitado(Util.valorBooleano(habUsuCliente));
+            cliente.setNome(nomeUsuCliente);
+            cliente.setEndereco(endUsuCliente);
+            cliente.setEmail(emailCol);
+            cliente.setTelefone(telCol);
             cliente.setCpf(cpfCol);
 
             res = cliente;
@@ -147,12 +164,16 @@ public class ClienteDAO implements IDAO<Cliente> {
             int habUsuCliente = cursor.getInt(3);
             String nomeUsuCliente = cursor.getString(4);
             String endUsuCliente = cursor.getString(5);
+            String emailCol = cursor.getString(6);
+            int telCol = cursor.getInt(7);
 
             Cliente cliente = new Cliente();
             cliente.setId(idCol);
             cliente.setHabilitado(Util.valorBooleano(habUsuCliente));
             cliente.setNome(nomeUsuCliente);
             cliente.setEndereco(endUsuCliente);
+            cliente.setEmail(emailCol);
+            cliente.setTelefone(telCol);
             cliente.setCpf(cpfCol);
 
             res.add(cliente);

@@ -83,18 +83,36 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
 
         String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_FORNECEDOR;
 
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_USUARIO;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
+
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID + " = ?";
         String args[] = new String[]{"" + id + ""};
 
         Cursor cursor = db.rawQuery(sql, args);
         if (cursor.moveToNext()) {
 
-            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID));
-            String cnpjCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_CNPJ));
+            //
+            long idCol = cursor.getLong(0);
+            String cnpjCol = cursor.getString(1);
+
+            //From USUARIO
+            int habUsu = cursor.getInt(3);
+            String nomeUsu = cursor.getString(4);
+            String endUsu = cursor.getString(5);
+            String emailCol = cursor.getString(6);
+            int telCol = cursor.getInt(7);
 
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idCol);
+            fornecedor.setHabilitado(Util.valorBooleano(habUsu));
+            fornecedor.setNome(nomeUsu);
+            fornecedor.setEndereco(endUsu);
+            fornecedor.setEmail(emailCol);
+            fornecedor.setTelefone(telCol);
             fornecedor.setCnpj(cnpjCol);
+
 
             res = fornecedor;
         }
@@ -147,13 +165,16 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
             int habUsu = cursor.getInt(3);
             String nomeUsu = cursor.getString(4);
             String endUsu = cursor.getString(5);
+            String emailCol = cursor.getString(6);
+            int telCol = cursor.getInt(7);
 
-            //From FORNECEDOR
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setId(idCol);
             fornecedor.setHabilitado(Util.valorBooleano(habUsu));
             fornecedor.setNome(nomeUsu);
             fornecedor.setEndereco(endUsu);
+            fornecedor.setEmail(emailCol);
+            fornecedor.setTelefone(telCol);
             fornecedor.setCnpj(cnpjCol);
 
             res.add(fornecedor);

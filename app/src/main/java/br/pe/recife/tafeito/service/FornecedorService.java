@@ -12,10 +12,6 @@ import br.pe.recife.tafeito.excecao.NegocioException;
 
 import br.pe.recife.tafeito.negocio.Fornecedor;
 
-/**
- * Created by HP on 21/11/2017.
- */
-
 public class FornecedorService {
 
     private static FornecedorService instancia;
@@ -23,8 +19,6 @@ public class FornecedorService {
     private FornecedorDAO fornecedorDao;
 
     private UsuarioService usuarioService;
-
-    private Context contexto;
 
     public static FornecedorService getInstancia(Context context) {
 
@@ -40,7 +34,7 @@ public class FornecedorService {
         this.usuarioService = UsuarioService.getInstancia(context);
     }
 
-    public void salvar(Fornecedor fornecedor) throws InfraException, NegocioException {
+    public void salvar(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException {
 
         if(fornecedor == null) {
             throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
@@ -48,7 +42,7 @@ public class FornecedorService {
 
         try {
 
-            usuarioService.salvar(fornecedor.gerarUsuario());
+            usuarioService.salvar(fornecedor.gerarUsuario(), contexto);
             fornecedorDao.salvar(fornecedor);
 
         } catch (Exception e) {
@@ -56,7 +50,7 @@ public class FornecedorService {
         }
     }
 
-    public Fornecedor consultar(long id) throws InfraException, NegocioException {
+    public Fornecedor consultar(long id, Context contexto) throws InfraException, NegocioException {
 
         Fornecedor res = null;
 
@@ -77,7 +71,7 @@ public class FornecedorService {
 
     }
 
-    public int excluir(Fornecedor fornecedor) throws InfraException, NegocioException{
+    public int excluir(Fornecedor fornecedor, Context contexto) throws InfraException, NegocioException{
 
         int res = 0;
 
@@ -88,7 +82,7 @@ public class FornecedorService {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
 
-            res = usuarioService.excluir(fornecedor.gerarUsuario());
+            res = usuarioService.excluir(fornecedor.gerarUsuario(), contexto);
             if (res <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }

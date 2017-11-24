@@ -16,6 +16,8 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
     public static final String TABELA_USUARIO_COLUNA_HABILITADO = "HABILITADO";
     public static final String TABELA_USUARIO_COLUNA_NOME = "NOME";
     public static final String TABELA_USUARIO_COLUNA_ENDERECO = "ENDERECO";
+    public static final String TABELA_USUARIO_COLUNA_EMAIL = "EMAIL";
+    public static final String TABELA_USUARIO_COLUNA_TELEFONE = "TELEFONE";
 
     public static final String TABELA_FORNECEDOR = "FORNECEDOR";
     public static final String TABELA_FORNECEDOR_COLUNA_ID = "ID";
@@ -87,7 +89,9 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
                 TABELA_USUARIO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TABELA_USUARIO_COLUNA_HABILITADO + " INTEGER NOT NULL DEFAULT 0, " +
                 TABELA_USUARIO_COLUNA_NOME + " TEXT NOT NULL, " +
-                TABELA_USUARIO_COLUNA_ENDERECO + " TEXT NOT NULL)"
+                TABELA_USUARIO_COLUNA_ENDERECO + " TEXT NOT NULL, " +
+                TABELA_USUARIO_COLUNA_EMAIL + " TEXT NOT NULL, " +
+                TABELA_USUARIO_COLUNA_TELEFONE + " INTEGER NOT NULL)"
         );
 
         db.execSQL("CREATE TABLE " + TABELA_FORNECEDOR + " (" +
