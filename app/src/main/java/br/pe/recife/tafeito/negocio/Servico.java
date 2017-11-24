@@ -1,6 +1,8 @@
 package br.pe.recife.tafeito.negocio;
 
-public class Servico {
+import java.io.Serializable;
+
+public class Servico implements Serializable {
 
     private long id;
     private ServicoCategoria servicoCategoria;
@@ -46,5 +48,23 @@ public class Servico {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
+    public String toPrint() {
+
+        String res = "ID: " + this.getId() + System.getProperty("line.separator");
+        res = res + "Nome: " + this.getNome() + System.getProperty("line.separator");
+        res = res + "Descrição: " + this.getDescricao() + System.getProperty("line.separator");
+        res = res + "Serviço Categoria: " + System.getProperty("line.separator");
+        res = res + this.getServicoCategoria().toPrint() + System.getProperty("line.separator");
+        res = res + "Fornecedor: " +  System.getProperty("line.separator");
+        res = res + this.getFornecedor().toPrint();
+
+        return res;
     }
 }

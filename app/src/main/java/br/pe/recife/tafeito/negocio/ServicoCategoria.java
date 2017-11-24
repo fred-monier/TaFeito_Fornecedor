@@ -1,6 +1,8 @@
 package br.pe.recife.tafeito.negocio;
 
-public class ServicoCategoria {
+import java.io.Serializable;
+
+public class ServicoCategoria implements Serializable {
 
     private long id;
     private String nome;
@@ -28,5 +30,19 @@ public class ServicoCategoria {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
+    public String toPrint() {
+
+        String res = "ID: " + this.getId() + System.getProperty("line.separator");
+        res = res + "Nome: " + this.getNome() + System.getProperty("line.separator");
+        res = res + "Descrição: " + this.getDescricao();
+
+        return res;
     }
 }

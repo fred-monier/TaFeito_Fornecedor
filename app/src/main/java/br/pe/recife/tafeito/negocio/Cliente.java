@@ -12,6 +12,22 @@ public class Cliente extends Usuario {
         this.cpf = cpf;
     }
 
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+
+    public String toPrint() {
+
+        String res = "ID: " + this.getId() + System.getProperty("line.separator");
+        res = res + "Habilitado: " + this.isHabilitado() + System.getProperty("line.separator");
+        res = res + "Nome: " + this.getNome() + System.getProperty("line.separator");
+        res = res + "Endereço: " + this.getEndereco() + System.getProperty("line.separator");
+        res = res + "CPF: " + this.getCpf();
+
+        return res;
+    }
+
     public Usuario gerarUsuario() {
         Usuario usuario = new Usuario();
 
