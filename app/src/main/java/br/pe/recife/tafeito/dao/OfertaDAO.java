@@ -131,7 +131,7 @@ public class OfertaDAO implements IDAO<Oferta> {
         sql = sql + " ON " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
         sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
 
-        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_ID + " = ?";
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_OFERTA + "." + SQLHelperTaFeito.TABELA_OFERTA_COLUNA_ID + " = ?";
         String args[] = new String[]{"" + id + ""};
 
         Cursor cursor = db.rawQuery(sql, args);
