@@ -35,16 +35,16 @@ public interface IFachadaTaFeito {
     ServicoCategoria consultarServicoCategoria(long id, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException;
     int excluirServicoCategoria(ServicoCategoria servicoCategoria, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException;
     List<ServicoCategoria> listarServicoCategoria(Autenticacao autenticacao) throws InfraException;
-    List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn, Autenticacao autenticacao)  throws InfraException;
+    List<ServicoCategoria> listarPorFornecedorServicoCategoria(Fornecedor forn, Autenticacao autenticacao)  throws InfraException;//********
 
     //ServicoService
     void salvarServico(Servico servico, Context contexto, Autenticacao autenticacao)throws InfraException, NegocioException;
     Servico consultarServico  (long id, Context contexto, Autenticacao autenticacao) throws InfraException,NegocioException;
     int excluirServico(Servico servico, Context contexto, Autenticacao autenticacao) throws InfraException,NegocioException;
     List<Servico> listarServico(Autenticacao autenticacao) throws InfraException;
-    List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat, Autenticacao autenticacao) throws InfraException;
-    List<Servico> listarPorFornecedorServico(Fornecedor forn, Autenticacao autenticacao) throws InfraException;
-    List<Servico> listarPorServicoCategoriaPorFornecedorServico(ServicoCategoria servicoCat, Fornecedor forn, Autenticacao autenticacao)
+    List<Servico> listarPorServicoCategoriaServico(ServicoCategoria servCat, Autenticacao autenticacao) throws InfraException;//********
+    List<Servico> listarPorFornecedorServico(Fornecedor forn, Autenticacao autenticacao) throws InfraException;//********
+    List<Servico> listarPorServicoCategoriaPorFornecedorServico(ServicoCategoria servicoCat, Fornecedor forn, Autenticacao autenticacao)//********
             throws InfraException;
 
     //OfertaService
