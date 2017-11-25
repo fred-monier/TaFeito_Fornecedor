@@ -153,7 +153,7 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
         sql = sql + " ON " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
         sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "2." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
 
-        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_AGENDAMENTO_COLUNA_ID + " = ?";
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_AGENDAMENTO + "." + SQLHelperTaFeito.TABELA_AGENDAMENTO_COLUNA_ID + " = ?";
         String args[] = new String[]{"" + id + ""};
 
         Cursor cursor = db.rawQuery(sql, args);

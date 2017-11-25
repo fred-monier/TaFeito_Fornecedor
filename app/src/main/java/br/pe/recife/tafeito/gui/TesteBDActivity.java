@@ -78,17 +78,17 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarCliente(cliente1, getApplicationContext(), autenticacao);
             System.out.println("Cliente1 salvo com sucesso:");
             System.out.println(cliente1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarCliente(cliente2, getApplicationContext(), autenticacao);
             System.out.println("Cliente2 salvo com sucesso:");
             System.out.println(cliente2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarCliente(cliente3, getApplicationContext(), autenticacao);
             System.out.println("Cliente3 salvo com sucesso:");
             System.out.println(cliente3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             cliente2.setHabilitado(true);
@@ -101,18 +101,18 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarCliente(cliente2, getApplicationContext(), autenticacao);
             System.out.println("Cliente2 alterado com sucesso:");
             System.out.println(cliente2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             cliente2 = fachada.consultarCliente(cliente2.getId(), getApplicationContext(), autenticacao);
             System.out.println("Cliente2 consultado com sucesso:");
             System.out.println(cliente2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirCliente(cliente2, getApplicationContext(), autenticacao);
             System.out.println("Cliente2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<Cliente> listaClientes = fachada.listarCliente(autenticacao);
@@ -121,7 +121,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 Cliente obj = (Cliente) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -163,17 +163,17 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarFornecedor(fornecedor1, getApplicationContext(), autenticacao);
             System.out.println("Fornecedor1 salvo com sucesso:");
             System.out.println(fornecedor1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarFornecedor(fornecedor2, getApplicationContext(), autenticacao);
             System.out.println("Fornecedor2 salvo com sucesso:");
             System.out.println(fornecedor2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarFornecedor(fornecedor3, getApplicationContext(), autenticacao);
             System.out.println("Fornecedor3 salvo com sucesso:");
             System.out.println(fornecedor3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             fornecedor2.setHabilitado(true);
@@ -186,18 +186,18 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarFornecedor(fornecedor2, getApplicationContext(), autenticacao);
             System.out.println("Fornecedor2 alterado com sucesso:");
             System.out.println(fornecedor2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             fornecedor2 = fachada.consultarFornecedor(fornecedor2.getId(), getApplicationContext(), autenticacao);
             System.out.println("Fornecedor2 consultado com sucesso:");
             System.out.println(fornecedor2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirFornecedor(fornecedor2, getApplicationContext(), autenticacao);
             System.out.println("Fornecedor2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<Fornecedor> listaFornecedors = fachada.listarFornecedor(autenticacao);
@@ -206,7 +206,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 Fornecedor obj = (Fornecedor) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -222,12 +222,12 @@ public class TesteBDActivity extends AppCompatActivity {
         servicoCategoria1.setDescricao("Descricao 1");
 
         ServicoCategoria servicoCategoria2 = new ServicoCategoria();
-        servicoCategoria1.setNome("ServicoCategoria2");
-        servicoCategoria1.setDescricao("Descricao 2");
+        servicoCategoria2.setNome("ServicoCategoria2");
+        servicoCategoria2.setDescricao("Descricao 2");
 
         ServicoCategoria servicoCategoria3 = new ServicoCategoria();
-        servicoCategoria1.setNome("ServicoCategoria3");
-        servicoCategoria1.setDescricao("Descricao 3");
+        servicoCategoria3.setNome("ServicoCategoria3");
+        servicoCategoria3.setDescricao("Descricao 3");
 
         try {
 
@@ -235,17 +235,17 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarServicoCategoria(servicoCategoria1, getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria1 salvo com sucesso:");
             System.out.println(servicoCategoria1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarServicoCategoria(servicoCategoria2, getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria2 salvo com sucesso:");
             System.out.println(servicoCategoria2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarServicoCategoria(servicoCategoria3, getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria3 salvo com sucesso:");
             System.out.println(servicoCategoria3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             servicoCategoria2.setNome("ServicoCategoria22");
@@ -254,18 +254,18 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarServicoCategoria(servicoCategoria2, getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria2 alterado com sucesso:");
             System.out.println(servicoCategoria2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             servicoCategoria2 = fachada.consultarServicoCategoria(servicoCategoria2.getId(), getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria2 consultado com sucesso:");
             System.out.println(servicoCategoria2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirServicoCategoria(servicoCategoria2, getApplicationContext(), autenticacao);
             System.out.println("ServicoCategoria2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<ServicoCategoria> listaServicoCategorias = fachada.listarServicoCategoria(autenticacao);
@@ -274,7 +274,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 ServicoCategoria obj = (ServicoCategoria) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -292,16 +292,16 @@ public class TesteBDActivity extends AppCompatActivity {
         servico1.setDescricao("Descricao 1");
 
         Servico servico2 = new Servico();
-        servico1.setFornecedor(fornecedor1);
-        servico1.setServicoCategoria(servicoCategoria1);
-        servico1.setNome("Servico2");
-        servico1.setDescricao("Descricao 2");
+        servico2.setFornecedor(fornecedor1);
+        servico2.setServicoCategoria(servicoCategoria1);
+        servico2.setNome("Servico2");
+        servico2.setDescricao("Descricao 2");
 
         Servico servico3 = new Servico();
-        servico1.setFornecedor(fornecedor3);
-        servico1.setServicoCategoria(servicoCategoria3);
-        servico1.setNome("Servico3");
-        servico1.setDescricao("Descricao 3");
+        servico3.setFornecedor(fornecedor3);
+        servico3.setServicoCategoria(servicoCategoria3);
+        servico3.setNome("Servico3");
+        servico3.setDescricao("Descricao 3");
 
         try {
 
@@ -309,17 +309,17 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarServico(servico1, getApplicationContext(), autenticacao);
             System.out.println("Servico1 salvo com sucesso:");
             System.out.println(servico1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarServico(servico2, getApplicationContext(), autenticacao);
             System.out.println("Servico2 salvo com sucesso:");
             System.out.println(servico2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarServico(servico3, getApplicationContext(), autenticacao);
             System.out.println("Servico3 salvo com sucesso:");
             System.out.println(servico3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             servico1.setFornecedor(fornecedor3);
@@ -330,18 +330,18 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarServico(servico2, getApplicationContext(), autenticacao);
             System.out.println("Servico2 alterado com sucesso:");
             System.out.println(servico2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             servico2 = fachada.consultarServico(servico2.getId(), getApplicationContext(), autenticacao);
             System.out.println("Servico2 consultado com sucesso:");
             System.out.println(servico2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirServico(servico2, getApplicationContext(), autenticacao);
             System.out.println("Servico2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<Servico> listaServicos = fachada.listarServico(autenticacao);
@@ -350,7 +350,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 Servico obj = (Servico) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -382,17 +382,17 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarOferta(oferta1, getApplicationContext(), autenticacao);
             System.out.println("Oferta1 salvo com sucesso:");
             System.out.println(oferta1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarOferta(oferta2, getApplicationContext(), autenticacao);
             System.out.println("Oferta2 salvo com sucesso:");
             System.out.println(oferta2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarOferta(oferta3, getApplicationContext(), autenticacao);
             System.out.println("Oferta3 salvo com sucesso:");
             System.out.println(oferta3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             oferta2.setServico(servico3);
@@ -402,18 +402,18 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarOferta(oferta2, getApplicationContext(), autenticacao);
             System.out.println("Oferta2 alterado com sucesso:");
             System.out.println(oferta2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             oferta2 = fachada.consultarOferta(oferta2.getId(), getApplicationContext(), autenticacao);
             System.out.println("Oferta2 consultado com sucesso:");
             System.out.println(oferta2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirOferta(oferta2, getApplicationContext(), autenticacao);
             System.out.println("Oferta2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<Oferta> listaOfertas = fachada.listarOferta(autenticacao);
@@ -422,7 +422,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 Oferta obj = (Oferta) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -441,7 +441,7 @@ public class TesteBDActivity extends AppCompatActivity {
 
         Agendamento agendamento2 = new Agendamento();
         agendamento2.setOferta(oferta1);
-        agendamento2.setCliente(cliente1);
+        agendamento2.setCliente(cliente3);
         agendamento2.setDataHoraRealizado(new GregorianCalendar(2017, 11, 10, 9, 30).getTime());
         agendamento2.setDataHoraCancelado(new GregorianCalendar(2017, 11, 10, 10, 30).getTime());
 
@@ -457,39 +457,39 @@ public class TesteBDActivity extends AppCompatActivity {
             fachada.salvarAgendamento(agendamento1, getApplicationContext(), autenticacao);
             System.out.println("Agendamento1 salvo com sucesso:");
             System.out.println(agendamento1.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarAgendamento(agendamento2, getApplicationContext(), autenticacao);
             System.out.println("Agendamento2 salvo com sucesso:");
             System.out.println(agendamento2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             fachada.salvarAgendamento(agendamento3, getApplicationContext(), autenticacao);
             System.out.println("Agendamento3 salvo com sucesso:");
             System.out.println(agendamento3.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 alteração
             agendamento2.setOferta(oferta3);
-            agendamento2.setCliente(cliente3);
+            agendamento2.setCliente(cliente1);
             agendamento2.setDataHoraRealizado(new GregorianCalendar(2018, 11, 10, 9, 30).getTime());
             agendamento2.setDataHoraCancelado(new GregorianCalendar(2018, 11, 10, 10, 30).getTime());
 
             fachada.salvarAgendamento(agendamento2, getApplicationContext(), autenticacao);
             System.out.println("Agendamento2 alterado com sucesso:");
             System.out.println(agendamento2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 consulta do alterado
             agendamento2 = fachada.consultarAgendamento(agendamento2.getId(), getApplicationContext(), autenticacao);
             System.out.println("Agendamento2 consultado com sucesso:");
             System.out.println(agendamento2.toPrint());
-            System.out.println();
+            System.out.println("***");
 
             //1 exclusão do alterado
             i = fachada.excluirAgendamento(agendamento2, getApplicationContext(), autenticacao);
             System.out.println("Agendamento2 excluído com sucesso. resposta: " + i);
-            System.out.println();
+            System.out.println("***");
 
             //listagem de todos
             List<Agendamento> listaAgendamentos = fachada.listarAgendamento(autenticacao);
@@ -498,7 +498,7 @@ public class TesteBDActivity extends AppCompatActivity {
             while (it.hasNext()) {
                 Agendamento obj = (Agendamento) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 
@@ -515,50 +515,50 @@ public class TesteBDActivity extends AppCompatActivity {
             List<ServicoCategoria> lista1 = fachada.listarPorFornecedorServicoCategoria(fornecedor3, autenticacao);
             System.out.println("Listagem de ServicoCategoria por Fornecedor:");
             System.out.println(fornecedor3.toPrint());
-            System.out.println();
+            System.out.println("***");
             Iterator it = lista1.iterator();
             while (it.hasNext()) {
                 ServicoCategoria obj = (ServicoCategoria) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
             //Servico por ServicoCategoria
             List<Servico> lista2 = fachada.listarPorServicoCategoriaServico(servicoCategoria3, autenticacao);
             System.out.println("Listagem de Servico por ServicoCategoria:");
             System.out.println(servicoCategoria3.toPrint());
-            System.out.println();
+            System.out.println("***");
             it = lista2.iterator();
             while (it.hasNext()) {
                 Servico obj = (Servico) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
             //Servico por Fornecedor
             List<Servico> lista3 = fachada.listarPorFornecedorServico(fornecedor3, autenticacao);
             System.out.println("Listagem de Servico por Fornecedor:");
             System.out.println(fornecedor3.toPrint());
-            System.out.println();
+            System.out.println("***");
             it = lista3.iterator();
             while (it.hasNext()) {
                 Servico obj = (Servico) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
             //Servico por ServicoCategoria por Fornecedor
             List<Servico> lista4 = fachada.listarPorServicoCategoriaPorFornecedorServico(servicoCategoria3, fornecedor3, autenticacao);
             System.out.println("Listagem de Servico por ServicoCategoria por Fornecedor:");
             System.out.println(servicoCategoria3.toPrint());
-            System.out.println();
+            System.out.println("***");
             System.out.println(fornecedor3.toPrint());
-            System.out.println();
+            System.out.println("***");
             it = lista4.iterator();
             while (it.hasNext()) {
                 Servico obj = (Servico) it.next();
                 System.out.println(obj.toPrint());
-                System.out.println();
+                System.out.println("***");
             }
 
 

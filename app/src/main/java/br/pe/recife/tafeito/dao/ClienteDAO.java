@@ -87,7 +87,7 @@ public class ClienteDAO implements IDAO<Cliente> {
         sql = sql + " ON " + SQLHelperTaFeito.TABELA_CLIENTE + "." + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID;
         sql = sql + " = " + SQLHelperTaFeito.TABELA_USUARIO + "." + SQLHelperTaFeito.TABELA_USUARIO_COLUNA_ID;
 
-        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID + " = ?";
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_CLIENTE + "." + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID + " = ?";
         String args[] = new String[]{"" + id + ""};
 
         Cursor cursor = db.rawQuery(sql, args);
