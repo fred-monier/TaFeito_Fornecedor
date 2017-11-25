@@ -9,7 +9,7 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
     private static SQLHelperTaFeito instancia;
 
     private static final String NOME_BANCO = "DB_TAFEITO";
-    private static final int VERSAO_BANCO = '1';
+    private static final int VERSAO_BANCO = '2';
 
     public static final String TABELA_USUARIO = "USUARIO";
     public static final String TABELA_USUARIO_COLUNA_ID = "ID";

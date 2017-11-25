@@ -262,6 +262,7 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             Agendamento agendamento = new Agendamento();
             agendamento.setId(idCol);
             agendamento.setOferta(oferta);
+            agendamento.setCliente(cliente);
             agendamento.setDataHoraRealizado(gcRealizado.getTime());
             agendamento.setDataHoraCancelado(gcCancelado.getTime());
 
@@ -429,6 +430,7 @@ public class AgendamentoDAO implements IDAO<Agendamento> {
             Agendamento agendamento = new Agendamento();
             agendamento.setId(idCol);
             agendamento.setOferta(oferta);
+            agendamento.setCliente(cliente);
             agendamento.setDataHoraRealizado(gcRealizado.getTime());
             agendamento.setDataHoraCancelado(gcCancelado.getTime());
 
