@@ -42,8 +42,13 @@ public class ClienteService {
 
         try {
 
-            usuarioService.salvar(cliente.gerarUsuario(), contexto);
-            clienteDao.salvar(cliente);
+            boolean clienteNovo = false;
+            if (cliente.getId() == 0) {
+                clienteNovo = true;
+            }
+
+            usuarioService.salvar(cliente, contexto);
+            clienteDao.salvar(cliente, clienteNovo);
 
         } catch (Exception e) {
             throw new InfraException(e.getMessage(), e);
@@ -82,7 +87,7 @@ public class ClienteService {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
 
-            res = usuarioService.excluir(cliente.gerarUsuario(), contexto);
+            res = usuarioService.excluir(cliente, contexto);
             if (res <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }

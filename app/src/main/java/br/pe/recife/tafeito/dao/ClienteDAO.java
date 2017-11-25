@@ -12,7 +12,7 @@ import br.pe.recife.tafeito.negocio.Cliente;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
 import br.pe.recife.tafeito.util.Util;
 
-public class ClienteDAO implements IDAO<Cliente> {
+public class ClienteDAO implements IDAOson<Cliente> {
 
     private static ClienteDAO instancia;
     private SQLHelperTaFeito bd;
@@ -36,6 +36,7 @@ public class ClienteDAO implements IDAO<Cliente> {
 
         ContentValues cv = new ContentValues();
 
+        cv.put(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID, cliente.getId());
         cv.put(SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_CPF, cliente.getCpf());
 
         long id = db.insert(SQLHelperTaFeito.TABELA_CLIENTE, null, cv);
@@ -66,8 +67,8 @@ public class ClienteDAO implements IDAO<Cliente> {
     }
 
     @Override
-    public void salvar(Cliente cliente) {
-        if (cliente.getId() == 0) {
+    public void salvar(Cliente cliente, boolean novo) {
+        if (novo) {
             this.inserir(cliente);
         } else {
             this.atualizar(cliente);

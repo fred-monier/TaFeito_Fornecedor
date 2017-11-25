@@ -42,8 +42,13 @@ public class FornecedorService {
 
         try {
 
-            usuarioService.salvar(fornecedor.gerarUsuario(), contexto);
-            fornecedorDao.salvar(fornecedor);
+            boolean novo = false;
+            if (fornecedor.getId() == 0) {
+                novo = true;
+            }
+
+            usuarioService.salvar(fornecedor, contexto);
+            fornecedorDao.salvar(fornecedor, novo);
 
         } catch (Exception e) {
             throw new InfraException(e.getMessage(), e);
@@ -82,7 +87,7 @@ public class FornecedorService {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
 
-            res = usuarioService.excluir(fornecedor.gerarUsuario(), contexto);
+            res = usuarioService.excluir(fornecedor, contexto);
             if (res <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }

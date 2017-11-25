@@ -12,7 +12,7 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
 import br.pe.recife.tafeito.util.Util;
 
-public class FornecedorDAO implements IDAO<Fornecedor> {
+public class FornecedorDAO implements IDAOson<Fornecedor> {
 
     private static FornecedorDAO instancia;
     private SQLHelperTaFeito bd;
@@ -36,6 +36,7 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
 
         ContentValues cv = new ContentValues();
 
+        cv.put(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID, fornecedor.getId());
         cv.put(SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_CNPJ, fornecedor.getCnpj());
 
         long id = db.insert(SQLHelperTaFeito.TABELA_FORNECEDOR, null, cv);
@@ -66,8 +67,8 @@ public class FornecedorDAO implements IDAO<Fornecedor> {
     }
 
     @Override
-    public void salvar(Fornecedor fornecedor) {
-        if (fornecedor.getId() == 0) {
+    public void salvar(Fornecedor fornecedor, boolean novo) {
+        if (novo) {
             this.inserir(fornecedor);
         } else {
             this.atualizar(fornecedor);
