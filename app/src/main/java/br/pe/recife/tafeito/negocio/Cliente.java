@@ -30,16 +30,16 @@ public class Cliente extends Usuario {
         return res;
     }
 
-    public Usuario gerarUsuario() {
-        Usuario usuario = new Usuario();
-
-        usuario.setId(this.getId());
-        usuario.setHabilitado(this.isHabilitado());
-        usuario.setNome(this.getNome());
-        usuario.setEndereco(this.getEndereco());
-        usuario.setEmail(this.getEmail());
-        usuario.setTelefone(this.getTelefone());
-
-        return usuario;
-    }
+//    public Usuario gerarUsuario() {
+//        Usuario usuario = new Usuario();
+//
+//        usuario.setId(this.getId());
+//        usuario.setHabilitado(this.isHabilitado());
+//        usuario.setNome(this.getNome());
+//        usuario.setEndereco(this.getEndereco());
+//        usuario.setEmail(this.getEmail());
+//        usuario.setTelefone(this.getTelefone());
+//
+//        return usuario;
+//    }
 }
