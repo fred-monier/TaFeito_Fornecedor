@@ -1,23 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ItsDone_Supplier</string>
+    <string name="app_name">TaFeito_Fornecedor</string>
 
-    <string name="excecao_objeto_nulo">Null object received</string>
-    <string name="excecao_objeto_nao_encontrado">Object not found</string>
-    <string name="excecao_objeto_nao_excluido">Object not excluded</string>
+    <string name="excecao_objeto_nulo">Objeto nulo recebido</string>
+    <string name="excecao_objeto_nao_encontrado">Objeto não encontrado</string>
+    <string name="excecao_objeto_nao_excluido">Objeto não excluído</string>
 
-    <string name="login_email" translatable="false">Email</string>
-    <string name="login_senha">Password</string>
-    <string name="login_autenticar">Login</string>
-    <string name="login_autenticando">Authenticating...</string>
-    <string name="login_falhou">Login failed</string>
-    <string name="login_email_invalido">enter a valid email address</string>
-    <string name="login_senha_tamanho_invalido">between 4 and 10 alphanumeric characters</string>
-    <string name="login_registrar">No account yet? Create one</string>
+    <string name="login_email">Email</string>
+    <string name="login_senha">Senha</string>
+    <string name="login_autenticar">Entrar</string>
+    <string name="login_autenticando">Autenticando...</string>
+    <string name="login_falhou">Falha na autenticação</string>
+    <string name="login_email_invalido">email inválido</string>
+    <string name="login_senha_tamanho_invalido">entre 4 e 10 caracteres alfanuméricos</string>
+    <string name="login_registrar">Ainda sem conta? Comece aqui</string>
 
-    <string name="registro_nome">Name</string>
-    <string name="registro_criar_conta">Create Account</string>
-    <string name="registro_ja_membro">Already a member? Login</string>
-    <string name="registro_criando_conta">Creating Account...</string>
-    <string name="registro_falhou">Login failed</string>
-    <string name="registro_nome_invalido">between 3 and 50 alphanumeric characters</string>
+    <string name="registro_nome">Nome</string>
+    <string name="registro_criar_conta">Registrar</string>
+    <string name="registro_ja_membro">Já registrado? Entre</string>
+    <string name="registro_criando_conta">Registrando...</string>
+    <string name="registro_falhou">Falha ao registrar</string>
+    <string name="registro_nome_invalido">entre 3 e 50 caracteres alfanuméricos</string>
 </resources>

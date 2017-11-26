@@ -18,7 +18,7 @@
 
         <ImageView
 
-            android:src="@drawable/logo_small"
+            android:src="@drawable/logo_tff"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
