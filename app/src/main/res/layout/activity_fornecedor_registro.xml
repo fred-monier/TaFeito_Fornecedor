@@ -52,6 +52,22 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <!--  Telefone -->
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText android:id="@+id/input_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="@string/registro_phone" />
+
+        </android.support.design.widget.TextInputLayout>
+
         <!-- Email -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -63,6 +79,22 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="@string/login_email" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Endereço -->
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText android:id="@+id/input_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="@string/registro_endereco" />
+
         </android.support.design.widget.TextInputLayout>
 
         <!-- Senha -->

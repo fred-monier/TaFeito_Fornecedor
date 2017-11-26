@@ -17,11 +17,16 @@
 
     <string name="registro_nome">Nome</string>
     <string name="registro_cnpj" translatable="false">CNPJ</string>
+    <string name="registro_email_invalido">email inválido (no máximo 100 caracteres)</string>
+    <string name="registro_phone">Telefone</string>
+    <string name="registro_endereco">Endereço</string>
     <string name="registro_criar_conta">Registrar</string>
     <string name="registro_ja_membro">Já registrado? Entre</string>
     <string name="registro_criando_conta">Registrando...</string>
     <string name="registro_falhou">Falha ao registrar</string>
-    <string name="registro_nome_invalido">entre 3 e 50 caracteres alfanuméricos</string>
+    <string name="registro_nome_invalido">entre 3 e 200 caracteres alfanuméricos</string>
     <string name="registro_cnpj_invalido">CNPJ inválido</string>
+    <string name="registro_phone_invalido">Telefone inválido</string>
+    <string name="registro_endereco_invalido">no máximo 200 caracteres alfanuméricos</string>
 
 </resources>

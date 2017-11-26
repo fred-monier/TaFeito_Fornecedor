@@ -23,7 +23,9 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
     @InjectView(R.id.input_name) EditText _nameText;
     @InjectView(R.id.input_cnpj) EditText _cnpjText;
+    @InjectView(R.id.input_phone) EditText _phoneText;
     @InjectView(R.id.input_email) EditText _emailText;
+    @InjectView(R.id.input_address) EditText _addressText;
     @InjectView(R.id.input_password) EditText _passwordText;
     @InjectView(R.id.btn_signup) Button _signupButton;
     @InjectView(R.id.link_login) TextView _loginLink;
@@ -36,7 +38,9 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fornecedor_registro);
 
         ButterKnife.inject(this);
+        //Mascara início
         _cnpjText.addTextChangedListener(MaskaraCpfCnpj.insert(_cnpjText, MaskaraType.CNPJ));
+        //Mascara fim
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +78,9 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String cnpj = _cnpjText.getText().toString();
+        String phone = _phoneText.getText().toString();
         String email = _emailText.getText().toString();
+        String address = _addressText.getText().toString();
         String password = _passwordText.getText().toString();
 
         // TODO: ********* CADASTRAR O FORNECEDOR AQUI
@@ -110,10 +116,12 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String cnpj = _cnpjText.getText().toString();
+        String phone = _phoneText.getText().toString();
         String email = _emailText.getText().toString();
+        String address = _addressText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3 || name.length() > 50) {
+        if (name.isEmpty() || name.length() < 3 || name.length() > 200) {
             _nameText.setError(getApplicationContext().getResources().
                     getText(R.string.registro_nome_invalido).toString());
             valid = false;
@@ -129,12 +137,28 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
             _cnpjText.setError(null);
         }
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (phone.isEmpty() || phone.length() < 10 || phone.length() > 11) {
+            _phoneText.setError(getApplicationContext().getResources().
+                    getText(R.string.registro_phone_invalido).toString());
+            valid = false;
+        } else {
+            _phoneText.setError(null);
+        }
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ||  email.length() > 100) {
             _emailText.setError(getApplicationContext().getResources().
-                    getText(R.string.login_email_invalido).toString());
+                    getText(R.string.registro_email_invalido).toString());
             valid = false;
         } else {
             _emailText.setError(null);
+        }
+
+        if (address.isEmpty() || address.length() > 200) {
+            _addressText.setError(getApplicationContext().getResources().
+                    getText(R.string.registro_endereco_invalido).toString());
+            valid = false;
+        } else {
+            _addressText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
