@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.pe.recife.tafeito.R;
+import br.pe.recife.tafeito.util.MaskaraCpfCnpj;
+import br.pe.recife.tafeito.util.MaskaraType;
+import br.pe.recife.tafeito.util.Util;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -19,6 +22,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
     @InjectView(R.id.input_name) EditText _nameText;
+    @InjectView(R.id.input_cnpj) EditText _cnpjText;
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
     @InjectView(R.id.btn_signup) Button _signupButton;
@@ -32,6 +36,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fornecedor_registro);
 
         ButterKnife.inject(this);
+        _cnpjText.addTextChangedListener(MaskaraCpfCnpj.insert(_cnpjText, MaskaraType.CNPJ));
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +73,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         progressDialog.show();
 
         String name = _nameText.getText().toString();
+        String cnpj = _cnpjText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
@@ -94,7 +100,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), getApplicationContext().getResources().
-                getText(R.string.registro_criando_conta).toString(), Toast.LENGTH_LONG).show();
+                getText(R.string.registro_falhou).toString(), Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -103,6 +109,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
+        String cnpj = _cnpjText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
@@ -112,6 +119,14 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
             valid = false;
         } else {
             _nameText.setError(null);
+        }
+
+        if (cnpj.isEmpty() || cnpj.length() != 14 || !Util.isCNPJ(cnpj)) {
+            _cnpjText.setError(getApplicationContext().getResources().
+                    getText(R.string.registro_cnpj_invalido).toString());
+            valid = false;
+        } else {
+            _cnpjText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
