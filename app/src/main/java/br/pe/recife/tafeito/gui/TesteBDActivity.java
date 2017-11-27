@@ -13,6 +13,7 @@ import java.util.List;
 import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
 import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
+import br.pe.recife.tafeito.negocio.Acesso;
 import br.pe.recife.tafeito.negocio.Agendamento;
 import br.pe.recife.tafeito.negocio.Autenticacao;
 import br.pe.recife.tafeito.negocio.Cliente;
@@ -33,6 +34,42 @@ public class TesteBDActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //teste1();
+        teste2();
+    }
+
+    private void teste2() {
+
+        System.out.println("*%*%*%*%*%*%*%*%*%*%*%* ---->  INICIANDO TESTES!  ");
+
+        IFachadaTaFeito fachada = FachadaTaFeitoSQLite.getInstancia(this.getApplicationContext());
+
+        ///
+
+        //Acesso
+        System.out.println("Testando Acessos:");
+
+        try {
+
+            //listagem de todos
+            List<Acesso> listaAcessos = fachada.listarAcesso();
+            System.out.println("Listagem de todos:");
+            Iterator it = listaAcessos.iterator();
+            while (it.hasNext()) {
+                Acesso obj = (Acesso) it.next();
+                System.out.println(obj.toPrint());
+                System.out.println("***");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    private void teste1() {
 
         System.out.println("*%*%*%*%*%*%*%*%*%*%*%* ---->  INICIANDO TESTES!  ");
 
@@ -565,6 +602,7 @@ public class TesteBDActivity extends AppCompatActivity {
         }  catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
 }

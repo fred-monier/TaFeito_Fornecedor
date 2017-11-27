@@ -1,6 +1,7 @@
 package br.pe.recife.tafeito.gui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.pe.recife.tafeito.R;
+import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
+import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
+import br.pe.recife.tafeito.negocio.Acesso;
+import br.pe.recife.tafeito.negocio.Autenticacao;
+import br.pe.recife.tafeito.negocio.Fornecedor;
+import br.pe.recife.tafeito.negocio.Usuario;
 import br.pe.recife.tafeito.util.MaskaraCpfCnpj;
 import br.pe.recife.tafeito.util.MaskaraType;
 import br.pe.recife.tafeito.util.Util;
@@ -19,7 +26,7 @@ import butterknife.InjectView;
 
 public class FornecedorRegistroActivity extends AppCompatActivity {
 
-    private static final String TAG = "SignupActivity";
+    private IFachadaTaFeito fachada;
 
     @InjectView(R.id.input_name) EditText _nameText;
     @InjectView(R.id.input_cnpj) EditText _cnpjText;
@@ -38,9 +45,12 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fornecedor_registro);
 
         ButterKnife.inject(this);
+
         //Mascara início
         _cnpjText.addTextChangedListener(MaskaraCpfCnpj.insert(_cnpjText, MaskaraType.CNPJ));
         //Mascara fim
+
+        fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +70,9 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
     }
 
     public void signup() {
-        Log.d(TAG, "Registro");
 
         if (!validate()) {
-            onSignupFailed();
+            onSignupFailed(null);
             return;
         }
 
@@ -77,36 +86,80 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         progressDialog.show();
 
         String name = _nameText.getText().toString();
-        String cnpj = _cnpjText.getText().toString();
+        String cnpj = _cnpjText.getText().toString().replaceAll("\\D", "");
         String phone = _phoneText.getText().toString();
         String email = _emailText.getText().toString();
         String address = _addressText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: ********* CADASTRAR O FORNECEDOR AQUI
+        //Cadastrar fornecedor
+        Autenticacao autenticacao = null;
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        try {
+
+            boolean existe = fachada.existePorLoginAcesso(email);
+
+            if (existe) {
+                onSignupFailed(getApplicationContext().getResources().
+                        getText(R.string.registro_email_ja_existente).toString());
+            } else {
+
+                Acesso acesso = new Acesso();
+                acesso.setLogin(email);
+                acesso.setSenha(password);
+
+                Usuario usuario = new Fornecedor();
+                usuario.setHabilitado(true);
+                usuario.setNome(name);
+                usuario.setEndereco(address);
+                usuario.setTelefone(Integer.parseInt(phone));
+                usuario.setEmail(email);
+                ((Fornecedor) usuario).setCnpj(cnpj);
+
+                autenticacao = fachada.salvarAcesso(acesso, usuario, getApplicationContext());
+
+            }
+
+        } catch (Exception e) {
+            onSignupFailed(e.getMessage());
+        }
+
+       //new android.os.Handler().postDelayed(
+       //         new Runnable() {
+       //             public void run() {
+       //                 // On complete call either onSignupSuccess or onSignupFailed
+       //                 // depending on success
+       //                 onSignupSuccess();
+       //                 // onSignupFailed();
+       //                 progressDialog.dismiss();
+       //             }
+       //         }, 3000);
+
+        if (autenticacao != null) {
+            onSignupSuccess(autenticacao);
+        } else {
+            onSignupFailed(null);
+        }
+        progressDialog.dismiss();
     }
 
 
-    public void onSignupSuccess() {
+    public void onSignupSuccess(Autenticacao autenticacao) {
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+
+        Intent devolve = getIntent();
+        devolve.putExtra(FornecedorLoginActivity.AUTENTICACAO, autenticacao);
+        setResult(RESULT_OK, devolve);
         finish();
     }
 
-    public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), getApplicationContext().getResources().
-                getText(R.string.registro_falhou).toString(), Toast.LENGTH_LONG).show();
+    public void onSignupFailed(String message) {
+
+        if (message == null) {
+            message =  getApplicationContext().getResources().
+                    getText(R.string.registro_falhou).toString();
+        }
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -115,7 +168,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
-        String cnpj = _cnpjText.getText().toString();
+        String cnpj = _cnpjText.getText().toString().replaceAll("\\D", "");
         String phone = _phoneText.getText().toString();
         String email = _emailText.getText().toString();
         String address = _addressText.getText().toString();
@@ -129,7 +182,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
             _nameText.setError(null);
         }
 
-        if (cnpj.isEmpty() || cnpj.length() != 14 || !Util.isCNPJ(cnpj)) {
+        if (cnpj.isEmpty() || cnpj.length() != 14) { //|| !Util.isCNPJ(cnpj)) {
             _cnpjText.setError(getApplicationContext().getResources().
                     getText(R.string.registro_cnpj_invalido).toString());
             valid = false;

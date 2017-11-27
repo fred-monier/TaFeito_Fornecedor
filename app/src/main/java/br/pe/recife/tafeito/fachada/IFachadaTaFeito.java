@@ -16,13 +16,15 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Oferta;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
+import br.pe.recife.tafeito.negocio.Usuario;
 
 public interface IFachadaTaFeito {
 
     //AcessoService
-    void salvarAcesso(Acesso acesso, Context contexto) throws InfraException, NegocioException;
+    Autenticacao salvarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException;
     Autenticacao buscarPorLoginPorSenhaAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException;
     boolean existePorLoginAcesso(String login) throws InfraException;
+    List<Acesso> listarAcesso() throws InfraException;
 
     //FornecedorService
     void salvarFornecedor(Fornecedor fornecedor, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException;

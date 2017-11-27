@@ -14,6 +14,7 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Oferta;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
+import br.pe.recife.tafeito.negocio.Usuario;
 import br.pe.recife.tafeito.service.AcessoService;
 import br.pe.recife.tafeito.service.AgendamentoService;
 import br.pe.recife.tafeito.service.ClienteService;
@@ -55,9 +56,9 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public void salvarAcesso(Acesso acesso, Context contexto) throws InfraException, NegocioException {
+    public Autenticacao salvarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
 
-        this.acessoService.salvar(acesso, contexto);
+        return this.acessoService.salvar(acesso, usuario, contexto);
     }
 
     @Override
@@ -68,6 +69,11 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     @Override
     public boolean existePorLoginAcesso(String login) throws InfraException {
         return this.acessoService.existePorLogin(login);
+    }
+
+    @Override
+    public List<Acesso> listarAcesso() throws InfraException {
+        return this.acessoService.listar();
     }
 
     @Override

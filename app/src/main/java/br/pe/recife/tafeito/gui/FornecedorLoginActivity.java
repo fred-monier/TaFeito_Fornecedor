@@ -3,7 +3,6 @@ package br.pe.recife.tafeito.gui;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import android.content.Intent;
 import android.view.View;
@@ -13,13 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.pe.recife.tafeito.R;
+import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
+import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
+import br.pe.recife.tafeito.negocio.Autenticacao;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class FornecedorLoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
+    public static final String AUTENTICACAO = "AUTENTICACAO";
+
     private static final int REQUEST_SIGNUP = 0;
+
+    private IFachadaTaFeito fachada;
 
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
@@ -34,6 +39,8 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fornecedor_login);
 
         ButterKnife.inject(this);
+
+        fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -56,7 +63,6 @@ public class FornecedorLoginActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Log.d(TAG, "Login");
 
         if (!validate()) {
             onLoginFailed();
@@ -75,17 +81,32 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: ********* AUTENTICAR O FORNECEDOR AQUI
+        //Autenticar Fornecedor
+        Autenticacao autenticacao;
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // Escolher se o login foi bem sucedido ou não para chamar o método adequado abaixo
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        try {
+            autenticacao = fachada.buscarPorLoginPorSenhaAcesso(email, password, getApplicationContext());
+        } catch (Exception e) {
+            autenticacao = null;
+        }
+
+
+        //new android.os.Handler().postDelayed(
+        //        new Runnable() {
+        //           public void run() {
+        //                // Escolher se o login foi bem sucedido ou não para chamar o método adequado abaixo
+        //                onLoginSuccess();
+        //                // onLoginFailed();
+        //                progressDialog.dismiss();
+        //            }
+        //        }, 3000);
+
+        if (autenticacao != null) {
+            onLoginSuccess(autenticacao);
+        } else {
+            onLoginFailed();
+        }
+        progressDialog.dismiss();
     }
 
 
@@ -94,23 +115,22 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
 
-                // TODO: ********* DECIDIR O QUE ACONTECE CASO O REGISTRO TENHA SIDO BEM SUCEDIDO
-                // By default we just finish the Activity and log them in automatically
-
-                this.finish();
+                Autenticacao autenticacao = (Autenticacao) data.getSerializableExtra(AUTENTICACAO);
+                goOn(autenticacao);
             }
         }
     }
 
     @Override
     public void onBackPressed() {
-        //Impede o comando de voltar para activity anterior, principal
+
+        //Impede o comando de voltar para uma activity anterior
         moveTaskToBack(true);
     }
 
-    public void onLoginSuccess() {
+    public void onLoginSuccess(Autenticacao autenticacao) {
         _loginButton.setEnabled(true);
-        finish();
+        goOn(autenticacao);
     }
 
     public void onLoginFailed() {
@@ -120,7 +140,16 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
     }
 
+    public void goOn(Autenticacao autenticacao) {
+
+        //Chama a tela principal de fornecedor
+        Intent intent = new Intent(getApplicationContext(), FornecedorPrincipalActivity.class);
+        intent.putExtra(AUTENTICACAO, autenticacao);
+        startActivity(intent);
+    }
+
     public boolean validate() {
+
         boolean valid = true;
 
         String email = _emailText.getText().toString();

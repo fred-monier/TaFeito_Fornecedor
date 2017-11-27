@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.pe.recife.tafeito.negocio.Acesso;
 import br.pe.recife.tafeito.util.SQLHelperTaFeito;
 
@@ -116,5 +119,39 @@ public class AcessoDAO {
         return res;
 
     }
+
+    public List<Acesso> listar() {
+
+        List<Acesso> res = new ArrayList<Acesso>();
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+
+        String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_ACESSO;
+
+        //sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_XXX + " = ?";
+        //String args[] = new String[]{"" + "XXX" + ""};
+
+        sql = sql + " ORDER BY " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_ID;
+
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+
+            long idCol = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_ACESSO_COLUNA_ID));
+            String loginCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_ACESSO_COLUNA_LOGIN));
+            String senhaCol = cursor.getString(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_ACESSO_COLUNA_SENHA));
+
+            Acesso acesso = new Acesso();
+            acesso.setId(idCol);
+            acesso.setLogin(loginCol);
+            acesso.setSenha(senhaCol);
+
+            res.add(acesso);
+        }
+
+        cursor.close();
+
+        return res;
+    }
+
 
 }
