@@ -63,13 +63,44 @@ public class AcessoDAO {
         return linhasAlteradas;
     }
 
-    public long buscarPorLoginPorSenha(String login, String senha) {
+    public long buscarPorLoginPorSenhaFornecedor(String login, String senha) {
 
         long res = 0;
 
         SQLiteDatabase db = bd.getReadableDatabase();
 
         String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_ACESSO;
+
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_FORNECEDOR;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_ACESSO + "." + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_FORNECEDOR + "." + SQLHelperTaFeito.TABELA_FORNECEDOR_COLUNA_ID;
+
+        sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_LOGIN + " = ?";
+        sql = sql + " AND " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_SENHA + " = ?";
+        String args[] = new String[]{"" + login + "","" + senha + ""};
+
+        Cursor cursor = db.rawQuery(sql, args);
+        if (cursor.moveToNext()) {
+            res = cursor.getLong(cursor.getColumnIndex(SQLHelperTaFeito.TABELA_ACESSO_COLUNA_ID));
+        }
+
+        cursor.close();
+
+        return res;
+
+    }
+
+    public long buscarPorLoginPorSenhaCliente(String login, String senha) {
+
+        long res = 0;
+
+        SQLiteDatabase db = bd.getReadableDatabase();
+
+        String sql = "SELECT * FROM " + SQLHelperTaFeito.TABELA_ACESSO;
+
+        sql = sql + " INNER JOIN " + SQLHelperTaFeito.TABELA_CLIENTE;
+        sql = sql + " ON " + SQLHelperTaFeito.TABELA_ACESSO + "." + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_ID;
+        sql = sql + " = " + SQLHelperTaFeito.TABELA_CLIENTE + "." + SQLHelperTaFeito.TABELA_CLIENTE_COLUNA_ID;
 
         sql = sql + " WHERE " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_LOGIN + " = ?";
         sql = sql + " AND " + SQLHelperTaFeito.TABELA_ACESSO_COLUNA_SENHA + " = ?";

@@ -103,7 +103,7 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         Autenticacao autenticacao;
 
         try {
-            autenticacao = fachada.buscarPorLoginPorSenhaAcesso(email, password, getApplicationContext());
+            autenticacao = fachada.buscarPorLoginPorSenhaFornecedorAcesso(email, password, getApplicationContext());
         } catch (Exception e) {
             autenticacao = null;
         }

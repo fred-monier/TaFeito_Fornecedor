@@ -68,8 +68,13 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public Autenticacao buscarPorLoginPorSenhaAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException {
-        return this.acessoService.buscarPorLoginPorSenha(login, senha, contexto);
+    public Autenticacao buscarPorLoginPorSenhaFornecedorAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException {
+        return this.acessoService.buscarPorLoginPorSenhaFornecedor(login, senha, contexto);
+    }
+
+    @Override
+    public Autenticacao buscarPorLoginPorSenhaClienteAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException {
+        return this.acessoService.buscarPorLoginPorSenhaCliente(login, senha, contexto);
     }
 
     @Override

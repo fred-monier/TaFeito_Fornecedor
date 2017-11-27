@@ -97,13 +97,39 @@ public class AcessoService {
         return res;
     }
 
-    public Autenticacao buscarPorLoginPorSenha(String login, String senha, Context contexto) throws InfraException, NegocioException {
+    public Autenticacao buscarPorLoginPorSenhaFornecedor(String login, String senha, Context contexto) throws InfraException, NegocioException {
 
         Autenticacao res = null;
 
         try {
 
-            long id = acessoDao.buscarPorLoginPorSenha(login, senha);
+            long id = acessoDao.buscarPorLoginPorSenhaFornecedor(login, senha);
+
+            if (id <= 0) {
+                throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_encontrado).toString());
+            }
+
+            res = new Autenticacao();
+            res.setIdAcesso(id);
+            res.setToken("");
+
+        } catch (NegocioException e) {
+            throw  e;
+        } catch (Exception e) {
+            throw new InfraException(e.getMessage(), e);
+        }
+
+        return res;
+
+    }
+
+    public Autenticacao buscarPorLoginPorSenhaCliente(String login, String senha, Context contexto) throws InfraException, NegocioException {
+
+        Autenticacao res = null;
+
+        try {
+
+            long id = acessoDao.buscarPorLoginPorSenhaCliente(login, senha);
 
             if (id <= 0) {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_encontrado).toString());
