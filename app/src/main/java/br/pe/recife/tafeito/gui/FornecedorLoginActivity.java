@@ -62,7 +62,25 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         });
     }
 
-    public void login() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_SIGNUP) {
+            if (resultCode == RESULT_OK) {
+
+                Autenticacao autenticacao = (Autenticacao) data.getSerializableExtra(AUTENTICACAO);
+                goOn(autenticacao);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        //Impede o comando de voltar para uma activity anterior
+        moveTaskToBack(true);
+    }
+
+    private void login() {
 
         if (!validate()) {
             onLoginFailed();
@@ -109,46 +127,7 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         progressDialog.dismiss();
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                Autenticacao autenticacao = (Autenticacao) data.getSerializableExtra(AUTENTICACAO);
-                goOn(autenticacao);
-            }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        //Impede o comando de voltar para uma activity anterior
-        moveTaskToBack(true);
-    }
-
-    public void onLoginSuccess(Autenticacao autenticacao) {
-        _loginButton.setEnabled(true);
-        goOn(autenticacao);
-    }
-
-    public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), getApplicationContext().getResources().
-                getText(R.string.login_falhou).toString(), Toast.LENGTH_LONG).show();
-
-        _loginButton.setEnabled(true);
-    }
-
-    public void goOn(Autenticacao autenticacao) {
-
-        //Chama a tela principal de fornecedor
-        Intent intent = new Intent(getApplicationContext(), FornecedorPrincipalActivity.class);
-        intent.putExtra(AUTENTICACAO, autenticacao);
-        startActivity(intent);
-    }
-
-    public boolean validate() {
+    private boolean validate() {
 
         boolean valid = true;
 
@@ -173,6 +152,27 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    private void onLoginSuccess(Autenticacao autenticacao) {
+        _loginButton.setEnabled(true);
+        goOn(autenticacao);
+    }
+
+    private void onLoginFailed() {
+        Toast.makeText(getBaseContext(), getApplicationContext().getResources().
+                getText(R.string.login_falhou).toString(), Toast.LENGTH_LONG).show();
+
+        _loginButton.setEnabled(true);
+    }
+
+    private void goOn(Autenticacao autenticacao) {
+
+        //Chama a tela principal de fornecedor
+        Intent intent = new Intent(getApplicationContext(), FornecedorPrincipalActivity.class);
+        intent.putExtra(AUTENTICACAO, autenticacao);
+        startActivity(intent);
+    }
+
 }
 
 

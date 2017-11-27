@@ -38,7 +38,7 @@ public class AcessoService {
         this.clienteService = ClienteService.getInstancia(context);
     }
 
-    public Autenticacao salvar(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
+    public Autenticacao inserir(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
 
         Autenticacao res = null;
 
@@ -55,7 +55,36 @@ public class AcessoService {
             }
 
             acesso.setId(usuario.getId());
-            acessoDao.salvar(acesso);
+            acessoDao.inserir(acesso);
+
+            res = new Autenticacao();
+            res.setIdAcesso(acesso.getId());
+            res.setToken("");
+
+        } catch (Exception e) {
+            throw new InfraException(e.getMessage(), e);
+        }
+
+        return res;
+    }
+
+    public Autenticacao atualizar(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
+
+        Autenticacao res = null;
+
+        if (acesso == null || usuario == null) {
+            throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nulo).toString());
+        }
+
+        try {
+
+            if (usuario instanceof Fornecedor) {
+                fornecedorService.salvar((Fornecedor) usuario, contexto);
+            } else {
+                clienteService.salvar((Cliente) usuario, contexto);
+            }
+
+            acessoDao.atualizar(acesso);
 
             res = new Autenticacao();
             res.setIdAcesso(acesso.getId());

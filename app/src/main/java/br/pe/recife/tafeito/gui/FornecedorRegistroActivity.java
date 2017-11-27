@@ -69,7 +69,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         });
     }
 
-    public void signup() {
+    private void signup() {
 
         if (!validate()) {
             onSignupFailed(null);
@@ -116,7 +116,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
                 usuario.setEmail(email);
                 ((Fornecedor) usuario).setCnpj(cnpj);
 
-                autenticacao = fachada.salvarAcesso(acesso, usuario, getApplicationContext());
+                autenticacao = fachada.inserirAcesso(acesso, usuario, getApplicationContext());
 
             }
 
@@ -144,7 +144,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
     }
 
 
-    public void onSignupSuccess(Autenticacao autenticacao) {
+    private void onSignupSuccess(Autenticacao autenticacao) {
         _signupButton.setEnabled(true);
 
         Intent devolve = getIntent();
@@ -153,7 +153,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onSignupFailed(String message) {
+    private void onSignupFailed(String message) {
 
         if (message == null) {
             message =  getApplicationContext().getResources().
@@ -164,7 +164,7 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         _signupButton.setEnabled(true);
     }
 
-    public boolean validate() {
+    private boolean validate() {
         boolean valid = true;
 
         String name = _nameText.getText().toString();

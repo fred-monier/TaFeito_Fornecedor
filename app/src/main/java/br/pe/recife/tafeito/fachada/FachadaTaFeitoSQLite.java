@@ -56,9 +56,15 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
     }
 
     @Override
-    public Autenticacao salvarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
+    public Autenticacao inserirAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
 
-        return this.acessoService.salvar(acesso, usuario, contexto);
+        return this.acessoService.inserir(acesso, usuario, contexto);
+    }
+
+    @Override
+    public Autenticacao atualizarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException {
+
+        return this.acessoService.inserir(acesso, usuario, contexto);
     }
 
     @Override

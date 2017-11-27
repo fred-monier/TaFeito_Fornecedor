@@ -29,7 +29,7 @@ public class AcessoDAO {
         this.bd = SQLHelperTaFeito.getInstancia(context);
     }
 
-    private long inserir(Acesso acesso) {
+    public long inserir(Acesso acesso) {
 
         SQLiteDatabase db = bd.getWritableDatabase();
 
@@ -41,16 +41,12 @@ public class AcessoDAO {
 
         long id = db.insert(SQLHelperTaFeito.TABELA_ACESSO, null, cv);
 
-        if (id != -1) {
-            acesso.setId(id);
-        }
-
         db.close();
 
         return id;
     }
 
-    private int atualizar(Acesso acesso) {
+    public int atualizar(Acesso acesso) {
 
         SQLiteDatabase db = bd.getWritableDatabase();
 
@@ -65,14 +61,6 @@ public class AcessoDAO {
         db.close();
 
         return linhasAlteradas;
-    }
-
-    public void salvar(Acesso acesso) {
-        if (acesso.getId() == 0) {
-            this.inserir(acesso);
-        } else {
-            this.atualizar(acesso);
-        }
     }
 
     public long buscarPorLoginPorSenha(String login, String senha) {

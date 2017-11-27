@@ -21,7 +21,8 @@ import br.pe.recife.tafeito.negocio.Usuario;
 public interface IFachadaTaFeito {
 
     //AcessoService
-    Autenticacao salvarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException;
+    Autenticacao inserirAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException;
+    Autenticacao atualizarAcesso(Acesso acesso, Usuario usuario, Context contexto) throws InfraException, NegocioException;
     Autenticacao buscarPorLoginPorSenhaAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException;
     boolean existePorLoginAcesso(String login) throws InfraException;
     List<Acesso> listarAcesso() throws InfraException;
