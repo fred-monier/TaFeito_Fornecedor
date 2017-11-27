@@ -167,7 +167,7 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
     private void goOn(Autenticacao autenticacao) {
 
-        //Chama a tela principal de fornecedor
+        //Chama a tela principal do fornecedor
         Intent intent = new Intent(getApplicationContext(), FornecedorPrincipalActivity.class);
         intent.putExtra(AUTENTICACAO, autenticacao);
         startActivity(intent);
