@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
+import br.pe.recife.tafeito.negocio.Acesso;
 import br.pe.recife.tafeito.negocio.Agendamento;
 import br.pe.recife.tafeito.negocio.Autenticacao;
 import br.pe.recife.tafeito.negocio.Cliente;
@@ -13,6 +14,7 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Oferta;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
+import br.pe.recife.tafeito.service.AcessoService;
 import br.pe.recife.tafeito.service.AgendamentoService;
 import br.pe.recife.tafeito.service.ClienteService;
 import br.pe.recife.tafeito.service.FornecedorService;
@@ -24,6 +26,7 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
 
     private static FachadaTaFeitoSQLite instancia;
 
+    private AcessoService acessoService;
     private FornecedorService fornecedorService;
     private ClienteService clienteService;
     private ServicoCategoriaService servicoCategoriaService;
@@ -42,12 +45,29 @@ public class FachadaTaFeitoSQLite implements IFachadaTaFeito {
 
     private FachadaTaFeitoSQLite(Context context) {
 
+        this.acessoService = AcessoService.getInstancia(context);
         this.fornecedorService = FornecedorService.getInstancia(context);
         this.clienteService = ClienteService.getInstancia(context);
         this.servicoCategoriaService = ServicoCategoriaService.getInstancia(context);
         this.servicoService = ServicoService.getInstancia(context);
         this.ofertaService = OfertaService.getInstancia(context);
         this.agendamentoService = AgendamentoService.getInstancia(context);
+    }
+
+    @Override
+    public void salvarAcesso(Acesso acesso, Context contexto) throws InfraException, NegocioException {
+
+        this.acessoService.salvar(acesso, contexto);
+    }
+
+    @Override
+    public Autenticacao buscarPorLoginPorSenhaAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException {
+        return this.acessoService.buscarPorLoginPorSenha(login, senha, contexto);
+    }
+
+    @Override
+    public boolean existePorLoginAcesso(String login) throws InfraException {
+        return this.acessoService.existePorLogin(login);
     }
 
     @Override

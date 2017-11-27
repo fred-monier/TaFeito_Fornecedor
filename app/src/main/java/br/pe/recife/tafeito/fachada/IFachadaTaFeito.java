@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.pe.recife.tafeito.excecao.InfraException;
 import br.pe.recife.tafeito.excecao.NegocioException;
+import br.pe.recife.tafeito.negocio.Acesso;
 import br.pe.recife.tafeito.negocio.Agendamento;
 import br.pe.recife.tafeito.negocio.Autenticacao;
 import br.pe.recife.tafeito.negocio.Cliente;
@@ -17,6 +18,11 @@ import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
 public interface IFachadaTaFeito {
+
+    //AcessoService
+    void salvarAcesso(Acesso acesso, Context contexto) throws InfraException, NegocioException;
+    Autenticacao buscarPorLoginPorSenhaAcesso(String login, String senha, Context contexto) throws InfraException, NegocioException;
+    boolean existePorLoginAcesso(String login) throws InfraException;
 
     //FornecedorService
     void salvarFornecedor(Fornecedor fornecedor, Context contexto, Autenticacao autenticacao) throws InfraException, NegocioException;

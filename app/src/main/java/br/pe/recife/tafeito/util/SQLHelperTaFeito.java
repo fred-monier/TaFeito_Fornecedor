@@ -9,7 +9,12 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
     private static SQLHelperTaFeito instancia;
 
     private static final String NOME_BANCO = "DB_TAFEITO";
-    private static final int VERSAO_BANCO = '3';
+    private static final int VERSAO_BANCO = '4';
+
+    public static final String TABELA_ACESSO = "ACESSO";
+    public static final String TABELA_ACESSO_COLUNA_ID = "ID";
+    public static final String TABELA_ACESSO_COLUNA_LOGIN = "LOGIN";
+    public static final String TABELA_ACESSO_COLUNA_SENHA = "SENHA";
 
     public static final String TABELA_USUARIO = "USUARIO";
     public static final String TABELA_USUARIO_COLUNA_ID = "ID";
@@ -84,6 +89,13 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("CREATE TABLE " + TABELA_ACESSO + " (" +
+                TABELA_ACESSO_COLUNA_ID + " INTEGER PRIMARY KEY, " +
+                TABELA_ACESSO_COLUNA_LOGIN + " TEXT NOT NULL, " +
+                TABELA_ACESSO_COLUNA_SENHA + " TEXT NOT NULL, " +
+                "CONSTRAINT IND_LOGIN UNIQUE (" + TABELA_ACESSO_COLUNA_LOGIN + "))"
+        );
 
         db.execSQL("CREATE TABLE " + TABELA_USUARIO + " (" +
                 TABELA_USUARIO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -175,6 +187,7 @@ public class SQLHelperTaFeito extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + TABELA_CLIENTE);
         db.execSQL("DROP TABLE " + TABELA_FORNECEDOR);
         db.execSQL("DROP TABLE " + TABELA_USUARIO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_ACESSO);
         onCreate(db);
     }
 }

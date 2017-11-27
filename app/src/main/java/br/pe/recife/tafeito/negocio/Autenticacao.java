@@ -1,8 +1,19 @@
 package br.pe.recife.tafeito.negocio;
 
-public class Autenticacao {
+import java.io.Serializable;
 
+public class Autenticacao implements Serializable {
+
+    private long idAcesso;
     private String token;
+
+    public long getIdAcesso() {
+        return idAcesso;
+    }
+
+    public void setIdAcesso(long idAcesso) {
+        this.idAcesso = idAcesso;
+    }
 
     public String getToken() {
         return token;
