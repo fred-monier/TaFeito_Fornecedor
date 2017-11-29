@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,22 +19,27 @@ import br.pe.recife.tafeito.negocio.Fornecedor;
 import br.pe.recife.tafeito.negocio.Usuario;
 import br.pe.recife.tafeito.util.MaskaraCpfCnpj;
 import br.pe.recife.tafeito.util.MaskaraType;
-import br.pe.recife.tafeito.util.Util;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class FornecedorRegistroActivity extends AppCompatActivity {
 
     private IFachadaTaFeito fachada;
 
-    @InjectView(R.id.input_name) EditText _nameText;
-    @InjectView(R.id.input_cnpj) EditText _cnpjText;
-    @InjectView(R.id.input_phone) EditText _phoneText;
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_address) EditText _addressText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_signup) Button _signupButton;
-    @InjectView(R.id.link_login) TextView _loginLink;
+    //@InjectView(R.id.input_name)
+    EditText _nameText;
+    //@InjectView(R.id.input_cnpj)
+    EditText _cnpjText;
+    //@InjectView(R.id.input_phone)
+    EditText _phoneText;
+    //@InjectView(R.id.input_email)
+    EditText _emailText;
+    //@InjectView(R.id.input_address)
+    EditText _addressText;
+    //@InjectView(R.id.input_password)
+    EditText _passwordText;
+    //@InjectView(R.id.btn_signup)
+    Button _signupButton;
+    //@InjectView(R.id.link_login)
+    TextView _loginLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,16 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fornecedor_registro);
 
-        ButterKnife.inject(this);
+        //ButterKnife.inject(this);
+        _nameText = (EditText) findViewById(R.id.input_name);
+        _cnpjText = (EditText) findViewById(R.id.input_cnpj);
+        _phoneText = (EditText) findViewById(R.id.input_phone);
+        _emailText = (EditText) findViewById(R.id.input_email);
+        _addressText = (EditText) findViewById(R.id.input_address);
+        _passwordText = (EditText) findViewById(R.id.input_password);
+        _signupButton = (Button) findViewById(R.id.btn_signup);
+        _loginLink = (TextView) findViewById(R.id.link_login);
+        ///////
 
         //Mascara início
         _cnpjText.addTextChangedListener(MaskaraCpfCnpj.insert(_cnpjText, MaskaraType.CNPJ));

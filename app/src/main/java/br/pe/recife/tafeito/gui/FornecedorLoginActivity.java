@@ -15,8 +15,6 @@ import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
 import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
 import br.pe.recife.tafeito.negocio.Autenticacao;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class FornecedorLoginActivity extends AppCompatActivity {
 
@@ -26,10 +24,14 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
     private IFachadaTaFeito fachada;
 
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_login) Button _loginButton;
-    @InjectView(R.id.link_signup) TextView _signupLink;
+    //@InjectView(R.id.input_email)
+    EditText _emailText;
+    //@InjectView(R.id.input_password)
+    EditText _passwordText;
+    //@InjectView(R.id.btn_login)
+    Button _loginButton;
+    //@InjectView(R.id.link_signup)
+    TextView _signupLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,13 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fornecedor_login);
 
-        ButterKnife.inject(this);
+        //ButterKnife.inject(this);
+        _emailText = (EditText) findViewById(R.id.input_email);
+        _passwordText = (EditText) findViewById(R.id.input_password);
+        _loginButton = (Button) findViewById(R.id.btn_login);
+        _signupLink = (TextView) findViewById(R.id.link_signup);
+        ///////
+
 
         fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
