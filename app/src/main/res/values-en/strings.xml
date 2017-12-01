@@ -26,4 +26,27 @@
     <string name="registro_cnpj_invalido">enter a valid CNPJ</string>
     <string name="registro_phone_invalido">enter a valid phone number</string>
     <string name="registro_endereco_invalido">at most 200 alphanumeric characters</string>
+
+    <!--Activity Principal Fornecedor -->
+    <string name="servico">Service: </string>
+    <string name="agendamento">Scheduling</string>
+    <string name="oferta">Offer</string>
+
+    <!--Activity Serviço Fornecedor -->
+    <string name="nome">Name: </string>
+    <string name="descricao">Description: </string>
+    <string name="data">Date: </string>
+    <string name="hora">Hour: </string>
+    <string name="categoria">Category: </string>
+    <string name="spinner_title">Select Category</string>
+    <string name="adicionar">Add</string>
+
+    <!--Activity Oferta Fornecedor -->
+    <string name="inicio">Start: </string>
+    <string name="fim">End: </string>
+    <string name="disponibilizar">Release</string>
+
+    <!--Activity Agendamento Fornecedor -->
+    <string name="cliente">Client: </string>
+
 </resources>
