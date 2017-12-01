@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">TaFeito_Fornecedor</string>
 
+    <!-- Mensagens de Exceção -->
     <string name="excecao_objeto_nulo">Objeto nulo recebido</string>
     <string name="excecao_objeto_nao_encontrado">Objeto não encontrado</string>
     <string name="excecao_objeto_nao_excluido">Objeto não excluído</string>
@@ -29,5 +30,28 @@
     <string name="registro_cnpj_invalido">CNPJ inválido</string>
     <string name="registro_phone_invalido">Telefone inválido</string>
     <string name="registro_endereco_invalido">no máximo 200 caracteres alfanuméricos</string>
+
+    <!--Activity Principal Fornecedor -->
+    <string name="servico">Serviço: </string>
+    <string name="agendamento">Agendar</string>
+    <string name="oferta">Oferta</string>
+    <string name="sair">Sair</string>
+
+    <!--Activity Serviço Fornecedor -->
+    <string name="nome">Nome: </string>
+    <string name="descricao">Descrição: </string>
+    <string name="data">Data: </string>
+    <string name="hora">Hora: </string>
+    <string name="categoria">Categoria: </string>
+    <string name="spinner_title">Selecione Categoria</string>
+    <string name="adicionar">Adicionar</string>
+
+    <!--Activity Oferta Fornecedor -->
+    <string name="inicio">Inicio: </string>
+    <string name="fim">Fim: </string>
+    <string name="disponibilizar">Disponibilizar</string>
+
+    <!--Activity Agendamento Fornecedor -->
+    <string name="cliente">Cliente: </string>
 
 </resources>
