@@ -93,6 +93,7 @@ public class FornecedorService {
                 throw new NegocioException(contexto.getResources().getText(R.string.excecao_objeto_nao_excluido).toString());
             }
 
+
         } catch (NegocioException e) {
             throw  e;
         } catch (Exception e) {
