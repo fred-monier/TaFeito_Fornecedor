@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fornecedor_oferta"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="br.pe.recife.tafeito.gui.FornecedorOfertaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:id="@+id/info_text6"
+            android:layout_width="89dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:text="@string/oferta"
+            android:textAlignment="gravity"
+            android:textColor="#222"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="@string/servico"
+                android:textColor="#222"
+                android:textSize="12dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:prompt="@string/spinner_title" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/info_text8"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.14"
+            android:text="@string/inicio"
+            android:textAlignment="gravity"
+            android:textColor="#222"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/editText6"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ems="18"
+                android:inputType="textPersonName"
+                android:text="25/04/1994"
+                android:layout_marginLeft="10dp" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="08:30"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/info_text9"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.14"
+            android:text="@string/fim"
+            android:textAlignment="gravity"
+            android:textColor="#222"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.00"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+
+            <EditText
+                android:id="@+id/editText5"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.22"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="25/05/2017"
+                android:layout_marginLeft="10dp" />
+
+            <EditText
+                android:id="@+id/editText7"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="08:40"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:textSize="12dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/disponibilizar">
+
+        </android.support.v7.widget.AppCompatButton>
+    </LinearLayout>
+
+</ScrollView>
