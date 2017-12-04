@@ -41,10 +41,10 @@ public class FornecedorServicoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fornecedor_servico);
 
-         _spinner          = (Spinner) findViewById(R.id.spinner);
-         _nomeServico      = (EditText)findViewById(R.id.editText2) ;
-        _descricaoServico  = (EditText)findViewById(R.id.editText3) ;
-        _button           = (Button)findViewById(R.id.button_add);
+         _spinner          = (Spinner) findViewById(R.id.spinner_categoria);
+         _nomeServico      = (EditText)findViewById(R.id.edit_nomeServico) ;
+         _descricaoServico = (EditText)findViewById(R.id.edit_nomeServico) ;
+         _button           = (Button)findViewById(R.id.btn_cad_servico);
 
         //Adicionando Nomes de Categoria de Serviços
         nomes.add("Barbeiro");
