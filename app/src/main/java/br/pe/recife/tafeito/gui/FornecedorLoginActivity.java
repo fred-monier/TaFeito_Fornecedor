@@ -24,13 +24,9 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
     private IFachadaTaFeito fachada;
 
-    //@InjectView(R.id.input_email)
     EditText _emailText;
-    //@InjectView(R.id.input_password)
     EditText _passwordText;
-    //@InjectView(R.id.btn_login)
-    Button _loginButton;
-    //@InjectView(R.id.link_signup)
+    Button   _loginButton;
     TextView _signupLink;
 
     @Override
@@ -40,29 +36,27 @@ public class FornecedorLoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fornecedor_login);
 
-        //ButterKnife.inject(this);
-        _emailText = (EditText) findViewById(R.id.input_email);
+        _emailText    = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
-        _loginButton = (Button) findViewById(R.id.btn_login);
-        _signupLink = (TextView) findViewById(R.id.link_signup);
-        ///////
-
+        _loginButton  = (Button) findViewById(R.id.btn_login);
+        _signupLink   = (TextView) findViewById(R.id.link_signup);
 
         fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
-        _loginButton.setOnClickListener(new View.OnClickListener() {
-
+        _loginButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 login();
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-
+        _signupLink.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 //Chama a tela de registro de fornecedor
                 Intent intent = new Intent(getApplicationContext(), FornecedorRegistroActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
@@ -115,17 +109,6 @@ public class FornecedorLoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             autenticacao = null;
         }
-
-
-        //new android.os.Handler().postDelayed(
-        //        new Runnable() {
-        //           public void run() {
-        //                // Escolher se o login foi bem sucedido ou não para chamar o método adequado abaixo
-        //                onLoginSuccess();
-        //                // onLoginFailed();
-        //                progressDialog.dismiss();
-        //            }
-        //        }, 3000);
 
         if (autenticacao != null) {
             onLoginSuccess(autenticacao);

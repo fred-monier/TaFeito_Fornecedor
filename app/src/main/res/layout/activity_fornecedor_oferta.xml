@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:text="@string/oferta"
             android:textAlignment="gravity"
-            android:textColor="#222"
+            android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="normal" />
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
                 android:text="@string/servico"
-                android:textColor="#222"
+                android:textColor="#fff"
                 android:textSize="12dp" />
 
             <Spinner
@@ -59,7 +59,7 @@
             android:layout_weight="0.14"
             android:text="@string/inicio"
             android:textAlignment="gravity"
-            android:textColor="#222"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="normal" />
 
@@ -71,7 +71,7 @@
             android:weightSum="1">
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/dataInicio"
                 android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -81,7 +81,7 @@
                 android:layout_marginLeft="10dp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/horaInicio"
                 android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -101,7 +101,7 @@
             android:layout_weight="0.14"
             android:text="@string/fim"
             android:textAlignment="gravity"
-            android:textColor="#222"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="normal" />
 
@@ -115,7 +115,7 @@
 
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/dataFim"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -126,7 +126,7 @@
                 android:layout_marginLeft="10dp" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/horaFim"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -138,7 +138,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_cad_oferta"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"

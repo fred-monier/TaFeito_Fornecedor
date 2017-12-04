@@ -2,9 +2,8 @@ package br.pe.recife.tafeito.gui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,18 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.pe.recife.tafeito.R;
-import br.pe.recife.tafeito.dao.ServicoCategoriaDAO;
-import br.pe.recife.tafeito.excecao.InfraException;
-import br.pe.recife.tafeito.excecao.NegocioException;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
 import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
 import br.pe.recife.tafeito.negocio.Autenticacao;
-import br.pe.recife.tafeito.negocio.Servico;
-import br.pe.recife.tafeito.negocio.ServicoCategoria;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
-import static android.R.attr.data;
 
 public class FornecedorServicoActivity extends AppCompatActivity
 {
@@ -40,20 +30,21 @@ public class FornecedorServicoActivity extends AppCompatActivity
     private List<String> nomes = new ArrayList<String>();
     private String categoria;
 
-    @InjectView(R.id.spinner)    Spinner  _spinner;
-    @InjectView(R.id.editText2)  EditText _nomeServico;
-    @InjectView(R.id.editText3)  EditText _descricaoServico;
-    @InjectView(R.id.button_add) Button   _button;
-    /*
-    *
-    */
+    Spinner  _spinner  ;
+    EditText _nomeServico ;
+    EditText _descricaoServico ;
+    Button   _button ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fornecedor_servico);
 
-        ButterKnife.inject(this);
+         _spinner          = (Spinner) findViewById(R.id.spinner);
+         _nomeServico      = (EditText)findViewById(R.id.editText2) ;
+        _descricaoServico  = (EditText)findViewById(R.id.editText3) ;
+        _button           = (Button)findViewById(R.id.button_add);
 
         //Adicionando Nomes de Categoria de Serviços
         nomes.add("Barbeiro");
@@ -75,9 +66,7 @@ public class FornecedorServicoActivity extends AppCompatActivity
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {            }
         });
 
         fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
@@ -90,24 +79,19 @@ public class FornecedorServicoActivity extends AppCompatActivity
             }
         });
 
-        String nomeServico = _nomeServico.getText().toString();
+        String nomeServico      = _nomeServico.getText().toString();
         String descricaoServico = _descricaoServico.getText().toString();
 
-
-        //Autenticar Fornecedor
-        Autenticacao autenticacao = (Autenticacao) data.getSerializableExtra(AUTENTICACAO);
-
+        autenticacao.setToken(AUTENTICACAO);
         try {
-            autenticacao = fachada.listarServicoCategoria(autenticacao);
+            //autenticacao = fachada.listarServicoCategoria(autenticacao);
         } catch (Exception e) {
             autenticacao = null;
         }
 
 
     }
-    /*
-    *
-    */
+
     private void signup()
     {
         _button.setEnabled(false);
@@ -120,24 +104,19 @@ public class FornecedorServicoActivity extends AppCompatActivity
         String name = _nomeServico.getText().toString();
         String descricao = _descricaoServico.getText().toString();
 
-        Servico servico = new Servico();
-        servico.setNome(name);
-        servico.getDescricao(descricao);
-        servico.setFornecedor(autenticacao);
-        servico.setServicoCategoria(categoria);
+
 
         Autenticacao autenticacao = new Autenticacao();
-        autenticacao.setIdAcesso();
-        autenticacao.setToken();
-
-        try {
-            fachada.salvarServico(servico, getApplicationContext(), autenticacao);
+/*
+        try
+        {
+           fachada.salvarServico(servico, getApplicationContext(), autenticacao);
         } catch (InfraException e) {
             e.printStackTrace();
         } catch (NegocioException e) {
             e.printStackTrace();
         }
-
+*/
         if (autenticacao != null) {
             onSignupSuccess(autenticacao);
         } else {

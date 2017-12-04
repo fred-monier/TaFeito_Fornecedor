@@ -24,67 +24,62 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
     private IFachadaTaFeito fachada;
 
-    //@InjectView(R.id.input_name)
     EditText _nameText;
-    //@InjectView(R.id.input_cnpj)
     EditText _cnpjText;
-    //@InjectView(R.id.input_phone)
     EditText _phoneText;
-    //@InjectView(R.id.input_email)
     EditText _emailText;
-    //@InjectView(R.id.input_address)
     EditText _addressText;
-    //@InjectView(R.id.input_password)
     EditText _passwordText;
-    //@InjectView(R.id.btn_signup)
-    Button _signupButton;
-    //@InjectView(R.id.link_login)
+    Button   _signupButton;
     TextView _loginLink;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_fornecedor_registro);
 
-        //ButterKnife.inject(this);
-        _nameText = (EditText) findViewById(R.id.input_name);
-        _cnpjText = (EditText) findViewById(R.id.input_cnpj);
-        _phoneText = (EditText) findViewById(R.id.input_phone);
-        _emailText = (EditText) findViewById(R.id.input_email);
-        _addressText = (EditText) findViewById(R.id.input_address);
+        _nameText     = (EditText) findViewById(R.id.input_name);
+        _cnpjText     = (EditText) findViewById(R.id.input_cnpj);
+        _phoneText    = (EditText) findViewById(R.id.input_phone);
+        _emailText    = (EditText) findViewById(R.id.input_email);
+        _addressText  = (EditText) findViewById(R.id.input_address);
         _passwordText = (EditText) findViewById(R.id.input_password);
-        _signupButton = (Button) findViewById(R.id.btn_signup);
-        _loginLink = (TextView) findViewById(R.id.link_login);
-        ///////
+        _signupButton = (Button)   findViewById(R.id.btn_signup);
+        _loginLink    = (TextView) findViewById(R.id.link_login);
 
-        //Mascara início
+        //Mascara
         _cnpjText.addTextChangedListener(MaskaraCpfCnpj.insert(_cnpjText, MaskaraType.CNPJ));
-        //Mascara fim
 
         fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
-        _signupButton.setOnClickListener(new View.OnClickListener() {
+        _signupButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 signup();
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
+        _loginLink.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
                 //Voltar para a tela de Login
+                Intent intent = new Intent(getApplicationContext(), FornecedorLoginActivity.class);
+                startActivityForResult(intent, 0);
                 finish();
             }
         });
     }
 
-    private void signup() {
-
-        if (!validate()) {
+    private void signup()
+    {
+        if (!validate())
+        {
             onSignupFailed(null);
             return;
         }
@@ -133,31 +128,24 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
 
             }
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             onSignupFailed(e.getMessage());
         }
 
-       //new android.os.Handler().postDelayed(
-       //         new Runnable() {
-       //             public void run() {
-       //                 // On complete call either onSignupSuccess or onSignupFailed
-       //                 // depending on success
-       //                 onSignupSuccess();
-       //                 // onSignupFailed();
-       //                 progressDialog.dismiss();
-       //             }
-       //         }, 3000);
-
-        if (autenticacao != null) {
+        if (autenticacao != null)
+        {
             onSignupSuccess(autenticacao);
-        } else {
+        } else
+            {
             onSignupFailed(null);
         }
         progressDialog.dismiss();
     }
 
 
-    private void onSignupSuccess(Autenticacao autenticacao) {
+    private void onSignupSuccess(Autenticacao autenticacao)
+    {
         _signupButton.setEnabled(true);
 
         Intent devolve = getIntent();
@@ -166,9 +154,11 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         finish();
     }
 
-    private void onSignupFailed(String message) {
+    private void onSignupFailed(String message)
+    {
 
-        if (message == null) {
+        if (message == null)
+        {
             message =  getApplicationContext().getResources().
                     getText(R.string.registro_falhou).toString();
         }
@@ -177,64 +167,72 @@ public class FornecedorRegistroActivity extends AppCompatActivity {
         _signupButton.setEnabled(true);
     }
 
-    private boolean validate() {
+    private boolean validate()
+    {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
-        String cnpj = _cnpjText.getText().toString().replaceAll("\\D", "");
-        String phone = _phoneText.getText().toString();
-        String email = _emailText.getText().toString();
-        String address = _addressText.getText().toString();
+        String name     = _nameText.getText().toString();
+        String cnpj     = _cnpjText.getText().toString().replaceAll("\\D", "");
+        String phone    = _phoneText.getText().toString();
+        String email    = _emailText.getText().toString();
+        String address  = _addressText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3 || name.length() > 200) {
-            _nameText.setError(getApplicationContext().getResources().
-                    getText(R.string.registro_nome_invalido).toString());
+        //nome
+        if (name.isEmpty() || name.length() < 3 || name.length() > 200)
+        {
+            _nameText.setError(getApplicationContext().getResources().getText(R.string.registro_nome_invalido).toString());
             valid = false;
-        } else {
+        } else
+            {
             _nameText.setError(null);
         }
-
-        if (cnpj.isEmpty() || cnpj.length() != 14) { //|| !Util.isCNPJ(cnpj)) {
+        //cnpj
+        if (cnpj.isEmpty() || cnpj.length() != 14)
+        {
             _cnpjText.setError(getApplicationContext().getResources().
                     getText(R.string.registro_cnpj_invalido).toString());
             valid = false;
         } else {
             _cnpjText.setError(null);
         }
-
-        if (phone.isEmpty() || phone.length() < 10 || phone.length() > 11) {
-            _phoneText.setError(getApplicationContext().getResources().
-                    getText(R.string.registro_phone_invalido).toString());
-            valid = false;
-        } else {
+        //telefone
+        if (phone.isEmpty() || phone.length() < 10 || phone.length() > 11)
+        {
+            //_phoneText.setError(getApplicationContext().getResources().getText(R.string.registro_phone_invalido).toString());
+           // valid = false;
+        } else
+            {
             _phoneText.setError(null);
         }
-
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ||  email.length() > 100) {
+        //e-mail
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() ||  email.length() > 100)
+        {
             _emailText.setError(getApplicationContext().getResources().
                     getText(R.string.registro_email_invalido).toString());
             valid = false;
         } else {
             _emailText.setError(null);
         }
-
-        if (address.isEmpty() || address.length() > 200) {
+        //enderreço
+        if (address.isEmpty() || address.length() > 200)
+        {
             _addressText.setError(getApplicationContext().getResources().
                     getText(R.string.registro_endereco_invalido).toString());
             valid = false;
-        } else {
+        } else
+            {
             _addressText.setError(null);
         }
-
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError(getApplicationContext().getResources().
-                    getText(R.string.login_senha_tamanho_invalido).toString());
+        //senha
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10)
+        {
+            _passwordText.setError(getApplicationContext().getResources().getText(R.string.login_senha_tamanho_invalido).toString());
             valid = false;
-        } else {
+        } else
+            {
             _passwordText.setError(null);
         }
-
         return valid;
     }
 }
