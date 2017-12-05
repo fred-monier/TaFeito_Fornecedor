@@ -4,10 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:id="@+id/fragmentAgendamento"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:layout_marginTop="5dp"
-    android:paddingBottom="20dp"
+    android:layout_marginTop="10dp"
     tools:context="br.pe.recife.tafeito.gui.FragmentListaAgendamento">
 
     <!-- oferta-->
@@ -20,15 +19,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="@string/oferta"
-            />
+            android:text="@string/servico">
+        </TextView>
 
         <TextView
+            android:id="@+id/edit_nomeServico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="corte de cabelo"
-            />
+            android:text="corte de cabelo">
+        </TextView>
     </LinearLayout>
 
     <!-- hora e data-->
@@ -42,18 +42,21 @@
             android:orientation="horizontal"
             android:layout_width="189dp"
             android:layout_height="30dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="@string/hora"
-                android:id="@+id/textView" />
+                android:id="@+id/textView">
+            </TextView>
             <TextView
+                android:id="@+id/edit_data"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="22:30"
-                />
+                android:text="22:30">
+            </TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -65,15 +68,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="@string/data"
-                />
+                android:text="@string/data">
+            </TextView>
 
             <TextView
+                android:id="@+id/edit_hora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="22/10/2017"
-                />
+                android:text="22/10/2017">
+            </TextView>
         </LinearLayout>
 
     </LinearLayout>
@@ -87,16 +91,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="@string/cliente"
-            />
+            android:layout_marginRight="10dp">
+        </TextView>
 
         <TextView
+            android:id="@+id/edit_nomeCliente"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="Laís"
-            />
+            android:text="Laís">
+        </TextView>
     </LinearLayout>
 
 </LinearLayout>

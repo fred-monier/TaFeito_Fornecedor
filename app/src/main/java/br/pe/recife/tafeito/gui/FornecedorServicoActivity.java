@@ -5,29 +5,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
 import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
 import br.pe.recife.tafeito.negocio.Autenticacao;
+import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
 public class FornecedorServicoActivity extends AppCompatActivity
 {
-    public static final String AUTENTICACAO = "AUTENTICACAO";
-    private Autenticacao autenticacao;
-    private static final int REQUEST_SIGNUP = 0;
+   private IFachadaTaFeito fachada;
 
-    private IFachadaTaFeito fachada;
-
-    Spinner  _spinner  ;
+    Spinner  _spinner;
     EditText _nomeServico ;
     EditText _descricaoServico ;
-    Button   _button ;
+    Button   _button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,52 +36,51 @@ public class FornecedorServicoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fornecedor_servico);
 
-         _spinner          = (Spinner) findViewById(R.id.spinner_categoria);
-         _nomeServico      = (EditText)findViewById(R.id.edit_nomeServico) ;
-         _descricaoServico = (EditText)findViewById(R.id.edit_nomeServico) ;
-         _button           = (Button)findViewById(R.id.btn_cad_servico);
-
-        //Adicionando Nomes de Categoria de Serviços
-       // ServicoCategoriaDAO categoriaDAO = new ServicoCategoriaDAO().listar();
-
-        //Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
-       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nomes);
-       // ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-        //spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        //_spinner.setAdapter(spinnerArrayAdapter);
-
-        //Método do Spinner para capturar o item selecionado
-        _spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
-                //pega nome pela posição
-                //categoria = parent.getItemAtPosition(posicao).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {            }
-        });
-
-        fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
-
-
-        _button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signup();
-            }
-        });
-
         String nomeServico      = _nomeServico.getText().toString();
         String descricaoServico = _descricaoServico.getText().toString();
 
-        autenticacao.setToken(AUTENTICACAO);
-        try {
-            //autenticacao = fachada.listarServicoCategoria(autenticacao);
+         _spinner          = (Spinner) findViewById(R.id.spinner_categoria);
+         _nomeServico      = (EditText)findViewById(R.id.edit_nomeServico) ;
+         _descricaoServico = (EditText)findViewById(R.id.edit_nomeServico) ;
+         _button           = (Button)  findViewById(R.id.btn_cad_servico);
+
+        IFachadaTaFeito fachada = FachadaTaFeitoSQLite.getInstancia( this.getApplicationContext() );
+
+        Autenticacao autenticacao = new Autenticacao();
+        autenticacao.setToken("123");
+
+        try
+        {
+            List<ServicoCategoria> listaServicoCategorias = fachada.listarServicoCategoria(autenticacao);
+            Iterator it = listaServicoCategorias.iterator();
+
+            List<String> list = new ArrayList<String>();
+
+            while (it.hasNext())
+            {
+                ServicoCategoria obj = (ServicoCategoria) it.next();
+                list.add( obj.toString() );
+            }
+
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            _spinner.setAdapter(dataAdapter);
+
         } catch (Exception e) {
-            autenticacao = null;
+            System.out.println(e.getMessage());
         }
 
+
+        _button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                int i = (int) _spinner.getSelectedItem();
+                signup();
+
+            }
+        });
 
     }
 
@@ -93,31 +93,21 @@ public class FornecedorServicoActivity extends AppCompatActivity
         progressDialog.setMessage(getApplicationContext().getResources().getText(R.string.registro_criando_conta).toString());
         progressDialog.show();
 
-        String name = _nomeServico.getText().toString();
+        String name      = _nomeServico.getText().toString();
         String descricao = _descricaoServico.getText().toString();
 
         Autenticacao autenticacao = new Autenticacao();
-/*
-        try
+
+        if (autenticacao != null)
         {
-           fachada.salvarServico(servico, getApplicationContext(), autenticacao);
-        } catch (InfraException e) {
-            e.printStackTrace();
-        } catch (NegocioException e) {
-            e.printStackTrace();
-        }
-*/
-        if (autenticacao != null) {
             onSignupSuccess(autenticacao);
-        } else {
+        } else
+        {
             onSignupFailed(null);
         }
-
         progressDialog.dismiss();
     }
-/*
-*
-*/
+
     private void onSignupSuccess(Autenticacao autenticacao)
     {
         _button.setEnabled(true);

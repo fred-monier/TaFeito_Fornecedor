@@ -19,22 +19,24 @@ import br.pe.recife.tafeito.negocio.Oferta;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
-public class TesteBDActivity extends AppCompatActivity {
-
+public class TesteBDActivity extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teste_bd);
 
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
 
         //teste1();
-       // teste2();
-        teste3();
+        //teste2();
+        //teste3();
     }
 
     private void teste3() {
@@ -74,13 +76,11 @@ public class TesteBDActivity extends AppCompatActivity {
 
         IFachadaTaFeito fachada = FachadaTaFeitoSQLite.getInstancia(this.getApplicationContext());
 
-        ///
-
         //Acesso
         System.out.println("Testando Acessos:");
 
-        try {
-
+        try
+        {
             //listagem de todos
             List<Acesso> listaAcessos = fachada.listarAcesso();
 
@@ -112,8 +112,6 @@ public class TesteBDActivity extends AppCompatActivity {
         Autenticacao autenticacao = new Autenticacao();
         autenticacao.setToken("123");
 
-        ////
-
         //Cliente
         System.out.println("Testando Cliente:");
 
@@ -141,8 +139,8 @@ public class TesteBDActivity extends AppCompatActivity {
         cliente3.setTelefone(3);
         cliente3.setCpf("3");
 
-        try {
-
+        try
+        {
             //3 inclusões
             fachada.salvarCliente(cliente1, getApplicationContext(), autenticacao);
             System.out.println("Cliente1 salvo com sucesso:");
