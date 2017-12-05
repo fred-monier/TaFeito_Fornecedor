@@ -6,14 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
@@ -27,8 +23,6 @@ public class FornecedorServicoActivity extends AppCompatActivity
     private static final int REQUEST_SIGNUP = 0;
 
     private IFachadaTaFeito fachada;
-    private List<String> nomes = new ArrayList<String>();
-    private String categoria;
 
     Spinner  _spinner  ;
     EditText _nomeServico ;
@@ -47,22 +41,20 @@ public class FornecedorServicoActivity extends AppCompatActivity
          _button           = (Button)findViewById(R.id.btn_cad_servico);
 
         //Adicionando Nomes de Categoria de Serviços
-        nomes.add("Barbeiro");
-        nomes.add("Medico");
-        nomes.add("Farmaceutico");
+       // ServicoCategoriaDAO categoriaDAO = new ServicoCategoriaDAO().listar();
 
         //Cria um ArrayAdapter usando um padrão de layout da classe R do android, passando o ArrayList nomes
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nomes);
-        ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        _spinner.setAdapter(spinnerArrayAdapter);
+       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nomes);
+       // ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+        //spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        //_spinner.setAdapter(spinnerArrayAdapter);
 
         //Método do Spinner para capturar o item selecionado
         _spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id) {
                 //pega nome pela posição
-                categoria = parent.getItemAtPosition(posicao).toString();
+                //categoria = parent.getItemAtPosition(posicao).toString();
             }
 
             @Override
@@ -104,8 +96,6 @@ public class FornecedorServicoActivity extends AppCompatActivity
         String name = _nomeServico.getText().toString();
         String descricao = _descricaoServico.getText().toString();
 
-
-
         Autenticacao autenticacao = new Autenticacao();
 /*
         try
@@ -137,9 +127,7 @@ public class FornecedorServicoActivity extends AppCompatActivity
         setResult(RESULT_OK, devolve);
         finish();
     }
-    /*
-    *
-    */
+
     private void onSignupFailed(String message)
     {
         if (message == null)

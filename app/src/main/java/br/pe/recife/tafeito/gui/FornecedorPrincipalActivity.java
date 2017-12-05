@@ -66,8 +66,5 @@ public class FornecedorPrincipalActivity extends AppCompatActivity
                   startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
-
-
-
     }
 }

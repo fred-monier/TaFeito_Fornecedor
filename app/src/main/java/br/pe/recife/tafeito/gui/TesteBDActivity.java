@@ -1,11 +1,8 @@
 package br.pe.recife.tafeito.gui;
 
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -35,9 +32,9 @@ public class TesteBDActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        teste1();
-        //teste2();
-        //teste3();
+        //teste1();
+       // teste2();
+        teste3();
     }
 
     private void teste3() {
@@ -49,18 +46,18 @@ public class TesteBDActivity extends AppCompatActivity {
         Autenticacao autenticacao = new Autenticacao();
         autenticacao.setToken("123");
 
-        ///
+        //System.out.println(autenticacao);
 
-        //ServicoCategorias
         System.out.println("Testando Serviços Categoria:");
 
         try {
-
             //listagem de todos
             List<ServicoCategoria> listaServicoCategorias = fachada.listarServicoCategoria(autenticacao);
             System.out.println("Listagem de todos:");
             Iterator it = listaServicoCategorias.iterator();
-            while (it.hasNext()) {
+
+            while (it.hasNext())
+            {
                 ServicoCategoria obj = (ServicoCategoria) it.next();
                 System.out.println(obj.toPrint());
                 System.out.println("***");
@@ -69,8 +66,6 @@ public class TesteBDActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     private void teste2() {
@@ -88,9 +83,12 @@ public class TesteBDActivity extends AppCompatActivity {
 
             //listagem de todos
             List<Acesso> listaAcessos = fachada.listarAcesso();
+
             System.out.println("Listagem de todos:");
             Iterator it = listaAcessos.iterator();
-            while (it.hasNext()) {
+
+            while (it.hasNext())
+            {
                 Acesso obj = (Acesso) it.next();
                 System.out.println(obj.toPrint());
                 System.out.println("***");

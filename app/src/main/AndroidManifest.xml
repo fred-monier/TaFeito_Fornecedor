@@ -19,12 +19,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".gui.FornecedorRegistroActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".gui.FornecedorPrincipalActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".gui.FornecedorAgendamentoActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".gui.FornecedorOfertaActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".gui.FornecedorServicoActivity" android:theme="@style/AppTheme.Dark"/>
-        <activity android:name=".gui.TesteBDActivity" />
+        <activity android:name=".gui.FornecedorRegistroActivity" android:theme="@style/AppTheme.Dark"></activity>
+        <activity android:name=".gui.FornecedorPrincipalActivity" android:theme="@style/AppTheme.Dark"></activity>
+        <activity android:name=".gui.FornecedorAgendamentoActivity" android:theme="@style/AppTheme.Dark"></activity>
+        <activity android:name=".gui.FornecedorOfertaActivity" android:theme="@style/AppTheme.Dark"></activity>
+        <activity android:name=".gui.FornecedorServicoActivity"></activity>
+        <activity android:name=".gui.TesteBDActivity">
+
+        </activity>
 
     </application>
 

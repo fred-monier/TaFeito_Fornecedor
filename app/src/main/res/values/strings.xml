@@ -32,7 +32,7 @@
     <string name="registro_endereco_invalido">no máximo 200 caracteres alfanuméricos</string>
 
     <!--Activity Principal Fornecedor -->
-    <string name="servico">Serviço: </string>
+    <string name="servico">Serviço </string>
     <string name="agendamento">Agendar</string>
     <string name="oferta">Oferta</string>
     <string name="sair">Sair</string>
