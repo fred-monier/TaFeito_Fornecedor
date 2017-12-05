@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TaFeito_Fornecedor.iml" filepath="$PROJECT_DIR$/TaFeito_Fornecedor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TaFeito_Fornecedor.iml" filepath="$PROJECT_DIR$/.idea/TaFeito_Fornecedor.iml" />
+      <module fileurl="file://C:\Users\Edna Soares\Downloads\TaFeito_Fornecedor\TaFeito_Fornecedor.iml" filepath="C:\Users\Edna Soares\Downloads\TaFeito_Fornecedor\TaFeito_Fornecedor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

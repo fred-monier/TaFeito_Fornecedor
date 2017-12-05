@@ -5,13 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.EditText;
-
 import br.pe.recife.tafeito.R;
 import br.pe.recife.tafeito.fachada.FachadaTaFeitoSQLite;
 import br.pe.recife.tafeito.fachada.IFachadaTaFeito;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class FornecedorPrincipalActivity extends AppCompatActivity
 {
@@ -19,9 +15,10 @@ public class FornecedorPrincipalActivity extends AppCompatActivity
     private static final int REQUEST_SIGNUP = 0;
     private IFachadaTaFeito fachada;
 
-    @InjectView (R.id.card_view1) CardView cardView_oferta;
-    @InjectView (R.id.card_view2) CardView cardView_agenda;
-    @InjectView (R.id.card_view3) CardView cardView_servico;
+    CardView cardView_oferta;
+    CardView cardView_agenda;
+    CardView cardView_servico;
+    CardView cardView_sair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,7 +26,10 @@ public class FornecedorPrincipalActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fornecedor_principal);
 
-        ButterKnife.inject(this);
+        cardView_oferta  = (CardView)findViewById(R.id.card_view1) ;
+        cardView_agenda  = (CardView)findViewById(R.id.card_view2) ;
+        cardView_servico = (CardView)findViewById(R.id.card_view3) ;
+        cardView_sair    = (CardView)findViewById(R.id.card_view4) ;
 
         fachada = FachadaTaFeitoSQLite.getInstancia(getApplicationContext());
 
@@ -69,7 +69,16 @@ public class FornecedorPrincipalActivity extends AppCompatActivity
             }
         });
 
-
-
+        //Sair
+        cardView_sair.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // Chama á tela cadastro de Serviço do fornecedor
+                Intent intent = new Intent(getApplicationContext(), FornecedorLoginActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
     }
 }

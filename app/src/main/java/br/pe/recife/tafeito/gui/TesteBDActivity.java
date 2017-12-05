@@ -1,11 +1,8 @@
 package br.pe.recife.tafeito.gui;
 
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -22,20 +19,22 @@ import br.pe.recife.tafeito.negocio.Oferta;
 import br.pe.recife.tafeito.negocio.Servico;
 import br.pe.recife.tafeito.negocio.ServicoCategoria;
 
-public class TesteBDActivity extends AppCompatActivity {
-
+public class TesteBDActivity extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teste_bd);
 
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
 
-        teste1();
+        //teste1();
         //teste2();
         //teste3();
     }
@@ -49,18 +48,18 @@ public class TesteBDActivity extends AppCompatActivity {
         Autenticacao autenticacao = new Autenticacao();
         autenticacao.setToken("123");
 
-        ///
+        //System.out.println(autenticacao);
 
-        //ServicoCategorias
         System.out.println("Testando Serviços Categoria:");
 
         try {
-
             //listagem de todos
             List<ServicoCategoria> listaServicoCategorias = fachada.listarServicoCategoria(autenticacao);
             System.out.println("Listagem de todos:");
             Iterator it = listaServicoCategorias.iterator();
-            while (it.hasNext()) {
+
+            while (it.hasNext())
+            {
                 ServicoCategoria obj = (ServicoCategoria) it.next();
                 System.out.println(obj.toPrint());
                 System.out.println("***");
@@ -69,8 +68,6 @@ public class TesteBDActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     private void teste2() {
@@ -79,18 +76,19 @@ public class TesteBDActivity extends AppCompatActivity {
 
         IFachadaTaFeito fachada = FachadaTaFeitoSQLite.getInstancia(this.getApplicationContext());
 
-        ///
-
         //Acesso
         System.out.println("Testando Acessos:");
 
-        try {
-
+        try
+        {
             //listagem de todos
             List<Acesso> listaAcessos = fachada.listarAcesso();
+
             System.out.println("Listagem de todos:");
             Iterator it = listaAcessos.iterator();
-            while (it.hasNext()) {
+
+            while (it.hasNext())
+            {
                 Acesso obj = (Acesso) it.next();
                 System.out.println(obj.toPrint());
                 System.out.println("***");
@@ -113,8 +111,6 @@ public class TesteBDActivity extends AppCompatActivity {
 
         Autenticacao autenticacao = new Autenticacao();
         autenticacao.setToken("123");
-
-        ////
 
         //Cliente
         System.out.println("Testando Cliente:");
@@ -143,8 +139,8 @@ public class TesteBDActivity extends AppCompatActivity {
         cliente3.setTelefone(3);
         cliente3.setCpf("3");
 
-        try {
-
+        try
+        {
             //3 inclusões
             fachada.salvarCliente(cliente1, getApplicationContext(), autenticacao);
             System.out.println("Cliente1 salvo com sucesso:");
